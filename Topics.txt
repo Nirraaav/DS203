@@ -1,0 +1,8 @@
+Linear Regression
+Logistic Regression 
+Linear Discriminant Analysis
+Non-Linear Relationships
+Generalized Linear Model = Linear + Logistic
+Classification Regression Trees
+Generalized Additive Trees
+Support Vector Machines

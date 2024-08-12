@@ -1,0 +1,70 @@
+\section{Part-A (Simple Linear Regression Derivation)}
+
+\subsection{Introduction}
+
+We will derive the formula for simple linear regression. We will use the following notation:
+
+\begin{itemize}
+	\item $X$ is the dependent variable.
+	\item $Y$ is the independent variable.
+	\item $n$ is the number of data points.
+	\item $(x_i, y_i)$ is the $i^{th}$ data point.
+	\item $\overline{x}$ is the mean of $X$.
+	\item $\overline{y}$ is the mean of $Y$.
+	\item $\overline{xy}$ is the mean of $XY$.
+	\item $\overline{x^2}$ is the mean of $X^2$.
+	\item $\overline{y^2}$ is the mean of $Y^2$.
+\end{itemize}
+
+\subsection{Derivation}
+
+The formula for the line of best fit is given by:
+
+\begin{align}
+	y = ax + b
+\end{align}
+
+where $a$ is the slope and $b$ is the intercept. We can derive the formula for $a$ and $b$ by minimizing the sum of squared errors. The sum of squared errors is given by:
+
+\begin{align}
+	\sum_{i=1}^{n} (y_i - (ax_i + b))^2
+\end{align}
+
+We can minimize this expression by taking the partial derivatives with respect to $a$ and $b$ and setting them to zero. The partial derivative with respect to $a$ is given by:
+
+\begin{align}
+	\frac{\partial}{\partial a} \sum_{i=1}^{n} (y_i - (ax_i + b))^2
+\end{align}
+
+The partial derivative with respect to $b$ is given by:
+
+\begin{align}
+	\frac{\partial}{\partial b} \sum_{i=1}^{n} (y_i - (ax_i + b))^2
+\end{align}
+
+Setting these partial derivatives to zero gives us the following two equations:
+
+\begin{align}
+	\sum_{i=1}^{n} (y_i - (ax_i + b))x_i &= 0 \\
+	\sum_{i=1}^{n} (y_i - (ax_i + b)) &= 0
+\end{align}
+
+Solving these equations gives us the following formulas for $a$ and $b$:
+
+\begin{align}
+	a &= \dfrac{\overline{xy} - \overline{x} \, \overline{y}}{\overline{x^2} - \overline{x}^2} \\
+	b &= \dfrac{\overline{y} \, \overline{x^2} - \overline{x} \, \overline{xy}}{\overline{x^2} - \overline{x}^2}
+\end{align}
+
+\subsection{Conclusion}
+
+We have derived the formula for simple linear regression. The equations for slope and intercept are given by:
+
+\begin{align}
+	a &= \dfrac{\overline{xy} - \overline{x} \, \overline{y}}{\overline{x^2} - \overline{x}^2} \\
+	b &= \dfrac{\overline{y} \, \overline{x^2} - \overline{x} \, \overline{xy}}{\overline{x^2} - \overline{x}^2}
+\end{align}
+
+\clearpage
+
+
