@@ -21,6 +21,9 @@ Here, I choose to create a dataset with $100$ random values of $x_i$ between $0$
 	y_i = 2 \times x_i + 1 + (\texttt{RAND()} - 0.5) \times 0.4
 \end{align}
 
+\begin{remark}
+	Since \verb|RAND()| randomizes the dataset at every change in the spreadsheet, I fixed random values for $y_i$ by copying and pasting the values as constants.
+\end{remark}
 
 \begin{custombox}[label={box:step2}]{Step 2}
 	Create the scatter plot resulting from your dataset $(x_i, y_i)$
@@ -42,7 +45,7 @@ Here, I choose to create a dataset with $100$ random values of $x_i$ between $0$
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{Images/Step3.png}
+	\includegraphics[width=0.5\textwidth]{Images/parameters-linear-regression.png}
 	\caption{Regression Coefficients}
 \end{figure}
 
@@ -62,13 +65,15 @@ Here, I choose to create a dataset with $100$ random values of $x_i$ between $0$
 	\caption{Regression Line Superimposed on the Scatter Plot for my dataset}
 \end{figure}
 
+\clearpage
+
 \begin{custombox}[label={box:step6}]{Step 6}
 	Calculate the prediction error $e_i$ corresponding to every $y_i$, and calculate the error metrics Sum of Squared Errors (SSE) and Mean Absolute Error (MAE).
 \end{custombox}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{Images/Step6.png}
+	\includegraphics[width=0.5\textwidth]{Images/error-metrics-1.png}
 	\caption{Error Metrics}
 \end{figure}
 
@@ -92,8 +97,7 @@ Here, I choose to create a dataset with $100$ random values of $x_i$ between $0$
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{Images/Step8.png}
-	\caption{Scatter Plot of $e_i$ \textit{v/s} $x_i$ for Na\"{\i}ve Model}
+	\includegraphics[width=0.5\textwidth]{Images/error-metrics-2.png}
 	\caption{Error Metrics for Na\"{\i}ve Model}
 \end{figure}
 
