@@ -1,0 +1,95 @@
+\section*{Question 3}
+
+{{Answer each of the following questions:}}
+
+\vspace{10mm}
+
+\begin{custombox}[label={box:Q3.1}]{Question 3.1}
+	Comment on the value of $R^2$ (the Coefficient of Determination). How good is the regression? What does this value represent?
+\end{custombox}
+
+The value of $R^2$ which I got is $0.943088513108762$. The value of $R^2$ is a measure of how well the regression line fits the data. It is a measure of the proportion of the variance in the dependent variable that is predictable from the independent variable. The value of $R^2$ ranges from $0$ to $1$. A value of $R^2$ close to $1$ indicates that the regression line fits the data very well. In this case, the value of $R^2$ is very close to $1$, which indicates that the regression line fits the data very well. 
+
+\vspace{10mm}
+
+\begin{custombox}[label={box:Q3.2}]{Question 3.2}
+	Independently calculate the value of $R^2$ using its basic definition. Compare it with the value created by the Regression functionality
+\end{custombox}
+
+We calculate the value of $R^2$ using the basic definition:
+
+\begin{align*}
+	R^2 &= \frac{SSR}{SST} \\
+	&= \frac{33.9371296979218}{35.9850949578982} \\
+	&= 0.943088513108762
+\end{align*}
+
+We find that the value of $R^2$ calculated using the basic definition is the same as the value of $R^2$ calculated using the Regression functionality.
+
+\vspace{10mm}
+
+\begin{custombox}[label={box:Q3.3}]{Question 3.3}
+	Compare $R^2$ with $r^2$ (the square of the Correlation coefficient, calculated above. What is your observation?
+\end{custombox}
+
+The value of $r^2$ which I got is {$0.943088513108763$}. The value of $R^2$ is the same as the value of $r^2$. This is because $R^2$ is the square of the Correlation coefficient. This also shows that all the calculations are consistent with each other.
+
+\vspace{10mm}
+
+\begin{custombox}[label={box:Q3.4}]{Question 3.4}
+	What do you understand by the Standard Error values associated with the coefficients?
+\end{custombox}
+
+The Standard Error values associated with the coefficients are a measure of the accuracy of the coefficient estimates. They give an estimate of the standard deviation of the sampling distribution of the coefficient estimates. A lower value of the Standard Error indicates that the coefficient estimate is more accurate. \\
+
+The values which I got are:
+
+\begin{itemize}
+	\item Standard Error for Regression Statisics: $0.144560038370349$
+	\item Standard Error for Intercept: $0.0309763284591115$
+	\item Standard Error for Slope: $0.049705963538737$
+\end{itemize}
+
+\vspace{10mm}
+
+\begin{custombox}[label={box:Q3.5}]{Question 3.5}
+	Are the coefficients of the Regression statistically significant? Justify your answer.
+\end{custombox}
+
+The coefficients of the Regression are statistically significant if the p-values associated with the coefficients are less than the significance level. The p-values which I got are:
+
+\begin{itemize}
+	\item p-value for Intercept: $2.93641644172256 \times 10^{-53}$
+	\item p-value for Slope: $8.36523045969653 \times 10^{-63}$
+\end{itemize}
+
+Both the p-values are less than the significance level of $0.05$. Therefore, we can conclude that the coefficients of the Regression are statistically significant.
+
+\vspace{10mm}
+
+\begin{custombox}[label={box:Q3.6}]{Question 3.6}
+	What do you understand by the 95\% confidence interval associated with each of the coefficients. What happens if ZERO is a part of this interval?
+\end{custombox}
+
+The 95\% confidence interval associated with each of the coefficients is an interval within which the true value of the coefficient lies with 95\% confidence. If ZERO is a part of this interval, it indicates that the coefficient is not statistically significant. If ZERO is not a part of this interval, it indicates that the coefficient is statistically significant. \\
+
+The 95\% confidence intervals which I got are:
+
+\begin{itemize}
+	\item 95\% Confidence Interval for Intercept: $[0.91904173016084, 1.04198476153538]$
+	\item 95\% Confidence Interval for Slope: $[1.90443783373749, 2.1017175676127]$
+\end{itemize}
+
+Both the 95\% confidence intervals do not contain ZERO. Therefore, we can conclude that both the coefficients are statistically significant.
+
+\vspace{10mm}
+
+\begin{custombox}[label={box:Q3.7}]{Question 3.7}
+	Comment on the F-value / F-Statistic. What does it represent? Why is it important?
+\end{custombox}
+
+The F-value / F-Statistic is a measure of the overall significance of the regression. It is the ratio of the mean square due to regression to the mean square due to error. A higher value of the F-value indicates that the regression is more significant. The F-value is important because it helps us determine whether the regression is significant or not. \\
+
+The F-value which I got is $1623.97223009275$. This is a very high value, which indicates that the regression is very significant.
+
+\clearpage
