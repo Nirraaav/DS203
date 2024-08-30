@@ -1,0 +1,100 @@
+\section*{Step 2}
+
+\begin{custombox}[label={box:Q2}]{Step 2}
+	Review the \textbf{\texttt{Sklearn}} documentation for each Sklearn function used in the Notebook (eg. \verb|PolynomialFeatures|, \verb|LinearRegression|, \verb|mean_squared_error|, etc.) and create a description of each to explain, to yourself, the functionality, the input parameters, and the outputs generated. Present this in the form of a two-column - Table (Function name | Description).
+\end{custombox}
+
+\begin{longtable}{|l|p{12cm}|}
+    \hline
+    \textbf{\texttt{PolynomialFeatures}} & 
+    This function is used to generate polynomial and interaction features. It generates a new feature matrix consisting of all polynomial combinations of the features with a degree less than or equal to the specified degree. The input to this function is the degree of the polynomial features to be generated. The output generated is a new feature matrix consisting of all polynomial combinations of the features with a degree less than or equal to the specified degree.
+
+    Input Parameters:
+    \begin{itemize}
+        \item \textbf{degree}: \texttt{int} or \texttt{tuple (min\_degree, max\_degree)}, \texttt{default=2}
+        \item \textbf{interaction\_only}: \texttt{bool}, \texttt{default=False}
+        \item \textbf{include\_bias}: \texttt{bool}, \texttt{default=True}
+        \item \textbf{order}: \texttt{str} in \{\texttt{`C'}, \texttt{`F'}\}, \texttt{default=`C'}
+    \end{itemize}
+
+    Attributes:
+    \begin{itemize}
+        \item \textbf{powers\_}: \texttt{ndarray} of shape (\texttt{n\_output\_features\_}, \texttt{n\_input\_features\_})
+        \item \textbf{n\_output\_features\_}: \texttt{int}
+        \item \textbf{n\_features\_in\_}: \texttt{int}
+        \item \textbf{feature\_names\_in\_}: \texttt{ndarray} of shape (\texttt{n\_input\_features\_},)
+    \end{itemize}
+
+    Output:
+    \begin{itemize}
+        \item \textbf{ndarray} of shape (\texttt{n\_samples}, \texttt{n\_output\_features\_})
+    \end{itemize}
+    \\ \hline
+
+    \textbf{\texttt{LinearRegression}} &
+    This function is used to fit a linear model. It fits a linear model with coefficients $w = (w_1, ..., w_p)$ to minimize the residual sum of squares between the observed targets in the dataset and the targets predicted by the linear approximation.
+
+    Input Parameters:
+    \begin{itemize}
+        \item \textbf{fit\_intercept}: \texttt{bool}, \texttt{default=True}
+        \item \textbf{copy\_X}: \texttt{bool}, \texttt{default=True}
+        \item \textbf{n\_jobs}: \texttt{int}, \texttt{default=None}
+        \item \textbf{positive}: \texttt{bool}, \texttt{default=False}
+    \end{itemize}
+
+    Attributes:
+    \begin{itemize}
+        \item \textbf{coef\_}: \texttt{ndarray} of shape (\texttt{n\_targets}, \texttt{n\_features})
+        \item \textbf{intercept\_}: \texttt{ndarray} of shape (\texttt{n\_targets},)
+        \item \textbf{rank\_}: \texttt{int}
+        \item \textbf{singular\_}: \texttt{ndarray} of shape (\texttt{min(X, y)},)
+        \item \textbf{n\_features\_in\_}: \texttt{ndarray} of shape (\texttt{n\_targets},)
+    \end{itemize}
+
+    Output:
+    \begin{itemize}
+        \item \textbf{self}: returns an instance of self
+    \end{itemize}
+    \\ \hline
+
+    \textbf{\texttt{SVR}} &
+    This function is used to fit the Support Vector Regression model.
+
+    Input Parameters:
+    \begin{itemize}
+        \item \textbf{kernel}: \texttt{str}, \texttt{default=`rbf'}
+        \item \textbf{degree}: \texttt{int}, \texttt{default=3}
+        \item \textbf{gamma}: \texttt{float}, \texttt{default=`scale'}
+        \item \textbf{coef0}: \texttt{float}, \texttt{default=0.0}
+        \item \textbf{tol}: \texttt{float}, \texttt{default=1e-3}
+        \item \textbf{C}: \texttt{float}, \texttt{default=1.0}
+        \item \textbf{epsilon}: \texttt{float}, \texttt{default=0.1}
+        \item \textbf{shrinking}: \texttt{bool}, \texttt{default=True}
+        \item \textbf{cache\_size}: \texttt{float}, \texttt{default=200}
+        \item \textbf{verbose}: \texttt{bool}, \texttt{default=False}
+        \item \textbf{max\_iter}: \texttt{int}, \texttt{default=-1}
+    \end{itemize}
+
+    Attributes:
+    \begin{itemize}
+        \item \textbf{coef\_}: \texttt{ndarray} of shape (1, \texttt{n\_features})
+        \item \textbf{dual\_coef\_}: \texttt{ndarray} of shape (1, \texttt{n\_SV})
+        \item \textbf{fit\_status\_}: \texttt{int}
+        \item \textbf{intercept\_}: \texttt{ndarray} of shape (1,)
+        \item \textbf{n\_features\_in\_}: \texttt{int}
+        \item \textbf{feature\_names\_in\_}: \texttt{ndarray} of shape (\texttt{n\_features},)
+        \item \textbf{n\_iter\_}: \texttt{int}
+        \item \textbf{n\_support\_}: \texttt{ndarray} of shape (1,)
+        \item \textbf{shape\_fit\_}: \texttt{tuple} of \texttt{int} of shape (\texttt{n\_dimensions\_of\_X},)
+        \item \textbf{support\_}: \texttt{ndarray} of shape (\texttt{n\_SV},)
+        \item \textbf{support\_vectors\_}: \texttt{ndarray} of shape (\texttt{n\_SV}, \texttt{n\_features})
+    \end{itemize}
+
+    Output:
+    \begin{itemize}
+        \item \textbf{ndarray} of shape (\texttt{n\_samples},)
+    \end{itemize}
+    \\ \hline
+\end{longtable}
+
+\clearpage
