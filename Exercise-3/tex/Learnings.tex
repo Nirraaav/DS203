@@ -1,3 +1,29 @@
 \section*{Main Learnings}
 
+This exercise provided a comprehensive understanding of several key concepts in regression analysis and the application of various regression models using \texttt{scikit-learn} in Python. The major learnings from this exercise are summarized as follows:
+
+\subsection*{1. Importance of Feature Engineering and Polynomial Features}
+One of the critical learnings from this exercise was the impact of feature engineering, particularly the use of polynomial features, on model performance. By transforming the input features into higher-order polynomial terms using the \texttt{PolynomialFeatures} function, the models were able to capture non-linear relationships between the features and the target variable. This transformation significantly improved the performance of models like Linear Regression, especially for higher degrees of polynomial features.
+
+\subsection*{2. Model Selection and Performance Comparison}
+The exercise involved the comparison of multiple regression models, including Linear Regression, Support Vector Machines (SVM), Random Forest, XGBoost, K-Nearest Neighbors (KNN), and Neural Networks, across different degrees of polynomial features. The analysis highlighted the strengths and weaknesses of each model. For instance, Linear Regression performed adequately for simple, linear relationships but struggled with higher-degree polynomials. In contrast, models like Random Forest and XGBoost showed robust performance across different degrees, effectively handling non-linear relationships and avoiding overfitting.
+
+\subsection*{3. Non-Parametric Methods and Their Advantages}
+Non-parametric methods, such as KNN and Decision Trees (used within Random Forest and XGBoost), demonstrated strong performance without requiring extensive feature engineering. These methods are inherently flexible and can adapt to various data distributions, making them effective in capturing complex patterns in the data. However, their performance is highly dependent on the quantity and quality of the data, and they can be prone to overfitting, especially with noisy data.
+
+\subsection*{4. Limitations of Non-Parametric Methods}
+Despite their advantages, non-parametric methods have certain limitations. They tend to be computationally expensive, particularly with large datasets, as they require storing and processing all training data during prediction. Additionally, these methods may struggle with high-dimensional data, leading to the curse of dimensionality, where the performance degrades as the number of features increases.
+
+\subsection*{5. Role of Regularization in Regression Models}
+The exercise also emphasized the importance of regularization techniques, such as Ridge and Lasso regression, in preventing overfitting. These techniques add a penalty term to the loss function, which constrains the model coefficients, thereby improving generalization on unseen data. Regularization was particularly useful when dealing with high-degree polynomial features, where the risk of overfitting is higher.
+
+\subsection*{6. Practical Insights on Model Tuning}
+Experimenting with different regression models and varying their parameters provided practical insights into model tuning. For example, adjusting the hyperparameters of models like SVM and Neural Networks (e.g., kernel type, learning rate, hidden layer sizes) had a significant impact on model performance. The exercise reinforced the importance of systematic hyperparameter tuning to achieve optimal results.
+
+\subsection*{7. Justification for Using Linear Regression}
+Finally, the exercise highlighted scenarios where Linear Regression remains a viable choice, despite its simplicity. For datasets with linear or near-linear relationships, and when interpretability is crucial, Linear Regression is still an effective and computationally efficient model. Moreover, when the data is limited, or the model needs to be easily interpretable, Linear Regression serves as a solid baseline or final model.
+
+\end{document}
+
+
 \clearpage

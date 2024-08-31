@@ -338,3 +338,46 @@ Given the results, \verb|LinearRegression| should be used in the following conte
 However, for non-linear relationships or when higher degrees of complexity are needed, more advanced methods like RandomForest, XGBoost, or Neural Networks may be preferred.
 
 \clearpage
+
+\section*{Error Metrics}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{./Images/R-squared.png}
+    \caption{R-squared Error Metric}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{./Images/MSE.png}
+    \caption{Mean Squared Error Metric}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{./Images/Durbin-Watson.png}
+    \caption{Durbin-Watson Error Metric}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{./Images/Jarque-Bera.png}
+    \caption{Jarque-Bera Error Metric}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{./Images/JB-P-value.png}
+    \caption{Jarque-Bera P-value Error Metric}
+\end{figure}
+
+We observe that the error metrics provide insights into the model's performance, with R-squared indicating the proportion of variance explained, MSE quantifying prediction errors, Durbin-Watson testing for autocorrelation, and Jarque-Bera assessing normality. These metrics help evaluate the model's fit, generalization, and assumptions, guiding model selection and interpretation.
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{R-squared:} The $R^2$ metric for degree from $1$ to $20$ shows an increasing trend as degree of the polynomial features increases. 
+    \item \textbf{Mean Squared Error (MSE):} The MSE decreases with increasing degree, indicating better model fit and lower prediction errors.
+    \item \textbf{Durbin-Watson:} The Durbin-Watson statistic is increasingly close to $2$ for higher degrees, suggesting reduced autocorrelation in the residuals.
+    \item \textbf{Jarque-Bera:} The Jarque-Bera statistic and its p-value show deviations from normality, with higher degrees exhibiting more significant deviations.
+\end{enumerate}
+
+\clearpage

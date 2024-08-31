@@ -4,4 +4,64 @@
 	In step~\ref{box:Q2} you have already reviewed the important parameters and outputs related to the regression methods. Select $2$-$3$ methods, vary the important parameters, and observe how the outputs change (eg. see the function calls for \verb|SVR| and \verb|MLPRegressor|). Document the outcomes of your experiments.
 \end{custombox}
 
+
+\subsubsection*{Support Vector Regression (SVR)}
+
+\begin{itemize}
+    \item \textbf{Parameters Varying:} \texttt{C}, \texttt{kernel}, and \texttt{epsilon}.
+    \item \textbf{Outcome:}
+    \begin{itemize}
+        \item \texttt{C:} Increasing \texttt{C} tightens the margin and reduces training error, potentially leading to overfitting if too high. Lower \texttt{C} values allow a wider margin but may increase bias.
+        \begin{lstlisting}[language=Python, caption=Increasing value of \texttt{C}]
+SVR(kernel='poly', C=10)
+        \end{lstlisting}
+        \item \texttt{kernel:} Changing from \texttt{poly} to \texttt{rbf} enables the model to capture non-polynomial patterns, significantly improving performance for non-polynomial data.
+        \begin{lstlisting}[language=Python, caption=Changing value of \texttt{kernel}]
+SVR(kernel='rbf')
+        \end{lstlisting}
+        \item \texttt{epsilon:} Adjusting \texttt{epsilon} affects the width of the epsilon-insensitive tube. Smaller values lead to a stricter fit, reducing bias but increasing variance.
+        \begin{lstlisting}[language=Python, caption=Adjusting value of \texttt{epsilon}]
+SVR(kernel='rbf', epsilon=0.01)
+        \end{lstlisting}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{MLPRegressor (Multi-Layer Perceptron Regressor)}
+
+\begin{itemize}
+    \item \textbf{Parameters Varying:} \texttt{hidden\_layer\_sizes}, \texttt{activation}, and \texttt{solver}.
+    \item \textbf{Outcome:}
+    \begin{itemize}
+        \item \texttt{hidden\_layer\_sizes:} Increasing the number of neurons or layers improves the model's ability to capture complex patterns, but also increases the risk of overfitting and computational cost.
+        \begin{lstlisting}[language=Python, caption=Increasing value of \texttt{hidden\_layer\_sizes}]
+MLPRegressor(hidden_layer_sizes=(100, 50, 25))
+        \end{lstlisting}
+        \item \texttt{activation:} Different activation functions (e.g., \texttt{relu}, \texttt{tanh}) affect learning speed and convergence. \texttt{relu} is often preferred for faster convergence and handling non-linearity.
+        \begin{lstlisting}[language=Python, caption=Changing the \texttt{activation} function]
+MLPRegressor(activation='tanh')
+        \end{lstlisting}
+        \item \texttt{solver:} Changing solvers (e.g., \texttt{adam}, \texttt{sgd}) impacts training efficiency and model performance. \texttt{adam} is typically faster and requires less tuning compared to \texttt{sgd}.
+        \begin{lstlisting}[language=Python, caption=Changing the \texttt{solver}]
+MLPRegressor(solver='sgd')
+		\end{lstlisting}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{RandomForest Regressor}
+
+\begin{itemize}
+    \item \textbf{Parameters Varying:} \texttt{n\_estimators} and \texttt{max\_depth}.
+    \item \textbf{Outcome:}
+    \begin{itemize}
+        \item \texttt{n\_estimators:} Increasing the number of trees generally improves performance and stability but increases computation time. Too many trees may lead to diminishing returns.
+        \begin{lstlisting}[language=Python, caption=Increasing Value of \texttt{n\_estimators}]
+RandomForestRegressor(n_estimators=1000)
+		\end{lstlisting}
+        \item \texttt{max\_depth:} Deeper trees can capture more complex patterns but may overfit. Shallower trees are less likely to overfit but may underperform on complex data.
+        \begin{lstlisting}[language=Python, caption=Increasing Value of \texttt{n\_max\_depth}]
+RandomForestRegressor(max_depth=10)
+		\end{lstlisting}
+    \end{itemize}
+\end{itemize}
+
 \clearpage
