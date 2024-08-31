@@ -28,8 +28,8 @@
     Output:
     \begin{itemize}
         \item \textbf{ndarray} of shape (\texttt{n\_samples}, \texttt{n\_output\_features\_})
-    \end{itemize}
-    \\ \hline
+    \end{itemize}\\* 
+    \hline
 
     \textbf{\texttt{LinearRegression}} &
     This function is used to fit a linear model. It fits a linear model with coefficients $w = (w_1, ..., w_p)$ to minimize the residual sum of squares between the observed targets in the dataset and the targets predicted by the linear approximation.
@@ -54,8 +54,8 @@
     Output:
     \begin{itemize}
         \item \textbf{self}: returns an instance of self
-    \end{itemize}
-    \\ \hline
+    \end{itemize}\\*
+    \hline
 
     \textbf{\texttt{SVR}} &
     This function is used to fit the Support Vector Regression model.
@@ -93,8 +93,251 @@
     Output:
     \begin{itemize}
         \item \textbf{ndarray} of shape (\texttt{n\_samples},)
-    \end{itemize}
-    \\ \hline
+    \end{itemize} \\*
+    \hline
+    \textbf{\texttt{KNeighborsRegressor}} &
+	This function is used to fit the K-Nearest Neighbors regressor model, which is a non-parametric method used for regression. It predicts the target variable by learning from the $k$ nearest data points in the feature space.
+
+	Input Parameters:
+	\begin{itemize}
+		\item \textbf{n\_neighbors}: \texttt{int}, \texttt{default=5}
+		\item \textbf{weights}: \texttt{str}, \texttt{default=`uniform'}
+		\item \textbf{algorithm}: \texttt{str}, \texttt{default=`auto'}
+		\item \textbf{leaf\_size}: \texttt{int}, \texttt{default=30}
+		\item \textbf{p}: \texttt{int}, \texttt{default=2}
+		\item \textbf{metric}: \texttt{str}, \texttt{default=`minkowski'}
+		\item \textbf{metric\_params}: \texttt{dict}, \texttt{default=None}
+		\item \textbf{n\_jobs}: \texttt{int}, \texttt{default=None}
+	\end{itemize}
+
+	Attributes:
+	\begin{itemize}
+		\item \textbf{effective\_metric\_}: \texttt{str}
+		\item \textbf{effective\_metric\_params\_}: \texttt{dict}
+		\item \textbf{n\_samples\_fit\_}: \texttt{int}
+		\item \textbf{n\_features\_in\_}: \texttt{int}
+		\item \textbf{feature\_names\_in\_}: \texttt{ndarray} of shape (\texttt{n\_features},)
+	\end{itemize}
+
+	Output:
+	\begin{itemize}
+		\item \textbf{ndarray} of shape (\texttt{n\_samples},)
+	\end{itemize} \\*
+	\hline
+    \nopagebreak
+    \textbf{\texttt{RandomForestRegressor}} &
+    This function is used to fit a random forest model, which is an ensemble learning method for regression. It fits a number of classifying decision trees on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting.
+
+    Input Parameters:
+    \begin{itemize}
+		\item \textbf{n\_estimators}: \texttt{int}, \texttt{default=100}
+		\item \textbf{criterion}: \texttt{str}, \texttt{default=`squared\_error'}
+		\item \textbf{max\_depth}: \texttt{int}, \texttt{default=None}
+		\item \textbf{min\_samples\_split}: \texttt{int}, \texttt{default=2}
+		\item \textbf{min\_samples\_leaf}: \texttt{int}, \texttt{default=1}
+		\item \textbf{min\_weight\_fraction\_leaf}: \texttt{float}, \texttt{default=0.0}
+		\item \textbf{max\_features}: \texttt{int}, \texttt{default=`auto'}
+		\item \textbf{max\_leaf\_nodes}: \texttt{int}, \texttt{default=None}
+		\item \textbf{min\_impurity\_decrease}: \texttt{float}, \texttt{default=0.0}
+		\item \textbf{bootstrap}: \texttt{bool}, \texttt{default=True}
+		\item \textbf{oob\_score}: \texttt{bool}, \texttt{default=False}
+		\item \textbf{n\_jobs}: \texttt{int}, \texttt{default=None}
+		\item \textbf{random\_state}: \texttt{int}, \texttt{default=None}
+		\item \textbf{verbose}: \texttt{int}, \texttt{default=0}
+		\item \textbf{warm\_start}: \texttt{bool}, \texttt{default=False}
+		\item \textbf{ccp\_alpha}: \texttt{float}, \texttt{default=0.0}
+		\item \textbf{max\_samples}: \texttt{int}, \texttt{default=None}
+		\item \textbf{monotonic\_cst}: \texttt{array-like} of shape (\texttt{n\_features}), \texttt{default=None}
+	\end{itemize}
+
+	Attributes:
+	\begin{itemize}
+		\item \textbf{estimator\_}: \texttt{DecisionTreeRegressor}
+		\item \textbf{estimators\_}: \texttt{list of DecisionTreeRegressor}
+		\item \textbf{n\_features\_in}: \texttt{int}
+		\item \textbf{feature\_names\_in\_}: \texttt{ndarray} of shape (\texttt{n\_features},)
+		\item \textbf{n\_outputs\_}: \texttt{int}
+		\item \textbf{oob\_score\_}: \texttt{ndarray} of shape (\texttt{n\_estimators},)
+		\item \textbf{oob\_prediction\_}: \texttt{ndarray} of shape (\texttt{n\_samples}, \texttt{n\_outputs})
+		\item \textbf{estimators\_samples\_}: \texttt{list of ndarray}
+	\end{itemize}
+
+	Output:
+	\begin{itemize}
+		\item \textbf{ndarray} of shape (\texttt{n\_samples},)
+	\end{itemize} \\*
+	\hline
+	\textbf{\texttt{mean\_squared\_error}} &
+	This function is used to compute the mean squared error regression loss. It computes the mean squared error between the true and predicted values.
+
+	Input Parameters:
+	\begin{itemize}
+		\item \textbf{y\_true}: \texttt{ndarray} of shape (\texttt{n\_samples},)
+		\item \textbf{y\_pred}: \texttt{ndarray} of shape (\texttt{n\_samples},)
+		\item \textbf{squared}: \texttt{bool}, \texttt{default=True}
+		\item \textbf{multioutput}: \texttt{str}, \texttt{default=`uniform\_average'}
+		\item \textbf{sample\_weight}: \texttt{ndarray} of shape (\texttt{n\_samples},), \texttt{default=None}
+	\end{itemize}
+
+	Output:
+	\begin{itemize}
+		\item \textbf{float}
+	\end{itemize} \\*
+	\hline
+	\textbf{GradientBoostingRegressor} &
+	This function is used to fit a gradient boosting model, which is an ensemble learning method for regression. It fits a number of regression trees on various sub-samples of the dataset and uses boosting to improve the predictive accuracy and control over-fitting.
+
+	Input Parameters:
+	\begin{itemize}
+		\item \textbf{loss}: \texttt{str}, \texttt{default=`ls'}
+		\item \textbf{learning\_rate}: \texttt{float}, \texttt{default=0.1}
+		\item \textbf{n\_estimators}: \texttt{int}, \texttt{default=100}
+		\item \textbf{subsample}: \texttt{float}, \texttt{default=1.0}
+		\item \textbf{criterion}: \texttt{str}, \texttt{default=`friedman\_mse'}
+		\item \textbf{min\_samples\_split}: \texttt{int}, \texttt{default=2}
+		\item \textbf{min\_samples\_leaf}: \texttt{int}, \texttt{default=1}
+		\item \textbf{min\_weight\_fraction\_leaf}: \texttt{float}, \texttt{default=0.0}
+		\item \textbf{max\_depth}: \texttt{int}, \texttt{default=3}
+		\item \textbf{min\_impurity\_decrease}: \texttt{float}, \texttt{default=0.0}
+		% \item \textbf{min\_impurity\_split}: \texttt{float}, \texttt{default=None}
+		\item \textbf{init}: \texttt{estimator}, \texttt{default=None}
+		\item \textbf{random\_state}: \texttt{int}, \texttt{default=None}
+		\item \textbf{max\_features}: \texttt{str}, \texttt{default=None}
+		\item \textbf{alpha}: \texttt{float}, \texttt{default=0.9}
+		\item \textbf{verbose}: \texttt{int}, \texttt{default=0}
+		\item \textbf{max\_leaf\_nodes}: \texttt{int}, \texttt{default=None}
+		\item \textbf{warm\_start}: \texttt{bool}, \texttt{default=False}
+		\item \textbf{validation\_fraction}: \texttt{float}, \texttt{default=0.1}
+		\item \textbf{n\_iter\_no\_change}: \texttt{int}, \texttt{default=None}
+		\item \textbf{tol}: \texttt{float}, \texttt{default=1e-4}
+		\item \textbf{ccp\_alpha}: \texttt{float}, \texttt{default=0.0}
+	\end{itemize}
+
+	Attributes:
+	\begin{itemize}
+		\item \textbf{n\_estimators\_}: \texttt{int}
+		\item \textbf{n\_trees\_per\_iteration\_}: \texttt{int}
+		\item \textbf{feature\_importances\_}: \texttt{ndarray} of shape (\texttt{n\_features},)
+		\item \textbf{oob\_improvement\_}: \texttt{ndarray} of shape (\texttt{n\_estimators},)
+		\item \textbf{oob\_score\_}: \texttt{ndarray} of shape (\texttt{n\_estimators},)
+		\item \textbf{oob\_scores\_}: \texttt{ndarray} of shape (\texttt{n\_estimators},)
+		\item \textbf{train\_score\_}: \texttt{ndarray} of shape (\texttt{n\_estimators},)
+		\item \textbf{init\_}: \texttt{estimator}
+		\item \textbf{estimators\_}: \texttt{ndarray of DecisionTreeRegressor}
+		\item \textbf{n\_features\_in\_}: \texttt{int}
+		\item \textbf{feature\_names\_in\_}: \texttt{ndarray} of shape (\texttt{n\_features},)
+		\item \textbf{max\_features\_}: \texttt{int}
+	\end{itemize}
+
+	Output:
+	\begin{itemize}
+		\item \textbf{ndarray} of shape (\texttt{n\_samples},)
+	\end{itemize} \\*
+	\hline
+	\textbf{\texttt{r2\_score}} &
+	This function is used to compute the R-squared regression score function. It computes the R-squared score, which is the coefficient of determination. This function has not been used in the jupyter notebook.
+	
+	Input Parameters:
+	\begin{itemize}
+		\item \textbf{y\_true}: \texttt{ndarray} of shape (\texttt{n\_samples},)
+		\item \textbf{y\_pred}: \texttt{ndarray} of shape (\texttt{n\_samples},)
+		\item \textbf{sample\_weight}: \texttt{ndarray} of shape (\texttt{n\_samples},), \texttt{default=None}
+		\item \textbf{multioutput}: \texttt{str}, \texttt{default=`uniform\_average'}
+		\item \textbf{force\_finite}: \texttt{bool}, \texttt{default=True}
+	\end{itemize}
+
+	Output:
+	\begin{itemize}
+		\item \textbf{float}
+	\end{itemize} \\*
+	\hline
+	\textbf{\texttt{MLPRegressor}} &
+	This function is used to fit a Multi-layer Perceptron regressor. It trains a neural network model with a single hidden layer, which is a fully-connected feed-forward artificial neural network.
+
+	Input Parameters:
+	\begin{itemize}
+		\item \textbf{hidden\_layer\_sizes}: \texttt{tuple}, \texttt{default=(100,)}
+		\item \textbf{activation}: \texttt{str}, \texttt{default=`relu'}
+		\item \textbf{solver}: \texttt{str}, \texttt{default=`adam'}
+		\item \textbf{alpha}: \texttt{float}, \texttt{default=0.0001}
+		\item \textbf{batch\_size}: \texttt{int}, \texttt{default=`auto'}
+		\item \textbf{learning\_rate}: \texttt{str}, \texttt{default=`constant'}
+		\item \textbf{learning\_rate\_init}: \texttt{float}, \texttt{default=0.001}
+		\item \textbf{power\_t}: \texttt{float}, \texttt{default=0.5}
+		\item \textbf{max\_iter}: \texttt{int}, \texttt{default=200}
+		\item \textbf{shuffle}: \texttt{bool}, \texttt{default=True}
+		\item \textbf{random\_state}: \texttt{int}, \texttt{default=None}
+		\item \textbf{tol}: \texttt{float}, \texttt{default=1e-4}
+		\item \textbf{verbose}: \texttt{bool}, \texttt{default=False}
+		\item \textbf{warm\_start}: \texttt{bool}, \texttt{default=False}
+		\item \textbf{momentum}: \texttt{float}, \texttt{default=0.9}
+		\item \textbf{nesterovs\_momentum}: \texttt{bool}, \texttt{default=True}
+		\item \textbf{early\_stopping}: \texttt{bool}, \texttt{default=False}
+		\item \textbf{validation\_fraction}: \texttt{float}, \texttt{default=0.1}
+		\item \textbf{beta\_1}: \texttt{float}, \texttt{default=0.9}
+		\item \textbf{beta\_2}: \texttt{float}, \texttt{default=0.999}
+		\item \textbf{epsilon}: \texttt{float}, \texttt{default=1e-8}
+		\item \textbf{n\_iter\_no\_change}: \texttt{int}, \texttt{default=10}
+		\item \textbf{max\_fun}: \texttt{int}, \texttt{default=15000}
+	\end{itemize}
+
+	Attributes:
+	\begin{itemize}
+		\item \textbf{loss\_}: \texttt{float}
+		\item \textbf{best\_loss\_}: \texttt{float}
+		\item \textbf{loss\_curve\_}: \texttt{list} of shape (\texttt{n\_iter\_},)
+		\item \textbf{t\_}: \texttt{int}
+		\item \textbf{validation\_scores\_}: \texttt{list} of shape (\texttt{n\_iter\_},)
+		\item \textbf{best\_validation\_score\_}: \texttt{float}
+		\item \textbf{coefs\_}: \texttt{list} of shape (\texttt{n\_layers\_ - 1},)
+		\item \textbf{intercepts\_}: \texttt{list} of shape (\texttt{n\_layers\_ - 1},)
+		\item \textbf{n\_features\_in\_}: \texttt{int}
+		\item \textbf{feature\_names\_in\_}: \texttt{ndarray} of shape (\texttt{n\_features},)
+		\item \textbf{n\_iter\_}: \texttt{int}
+		\item \textbf{n\_layers\_}: \texttt{int}
+		\item \textbf{n\_outputs\_}: \texttt{int}
+		\item \textbf{out\_activation\_}: \texttt{str}
+	\end{itemize}
+
+	Output:
+	\begin{itemize}
+		\item \textbf{ndarray} of shape (\texttt{n\_samples},)
+	\end{itemize} \\*
+	\hline
+	% \textbf{\texttt{mean\_squared\_error}} &
+	% This function is used to compute the mean squared error regression loss. It computes the mean squared error between the true and predicted values.
+
+	% Input Parameters:
+	% \begin{itemize}
+	% 	\item \textbf{y\_true}: \texttt{ndarray} of shape (\texttt{n\_samples},)
+	% 	\item \textbf{y\_pred}: \texttt{ndarray} of shape (\texttt{n\_samples},)
+	% 	\item \textbf{squared}: \texttt{bool}, \texttt{default=True}
+	% 	\item \textbf{multioutput}: \texttt{str}, \texttt{default=`uniform\_average'}
+	% 	\item \textbf{sample\_weight}: \texttt{ndarray} of shape (\texttt{n\_samples},), \texttt{default=None}
+	% \end{itemize}
+
+	% Output:
+	% \begin{itemize}
+	% 	\item \textbf{float}
+	% \end{itemize} \\*
+	% \hline
+	% \textbf{\texttt{r2\_score}} &
+	% This function is used to compute the R-squared regression score function. It computes the R-squared score, which is the coefficient of determination.
+
+	% Input Parameters:
+	% \begin{itemize}
+	% 	\item \textbf{y\_true}: \texttt{ndarray} of shape (\texttt{n\_samples},)
+	% 	\item \textbf{y\_pred}: \texttt{ndarray} of shape (\texttt{n\_samples},)
+	% 	\item \textbf{sample\_weight}: \texttt{ndarray} of shape (\texttt{n\_samples},), \texttt{default=None}
+	% 	\item \textbf{multioutput}: \texttt{str}, \texttt{default=`uniform\_average'}
+	% 	\item \textbf{force\_finite}: \texttt{bool}, \texttt{default=True}
+	% \end{itemize}
+
+	% Output:
+	% \begin{itemize}
+	% 	\item \textbf{float}
+	% \end{itemize} \\*
+	% \hline
 \end{longtable}
 
 \clearpage
