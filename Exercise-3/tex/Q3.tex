@@ -160,6 +160,12 @@ For each polynomial degree, the following analysis compares the performance of d
 
 \subsubsection*{Degree = 1}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Images/Error-Metrics-Degree-1.png}
+    \caption{Various Regression Models with degree = 1}
+\end{figure}
+
 At \textbf{degree = 1}, with only linear features:
 
 \begin{itemize}
@@ -175,6 +181,12 @@ At \textbf{degree = 1}, with only linear features:
 \end{itemize}
 
 \subsubsection*{Degree = 3}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Images/Error-Metrics-Degree-3.png}
+    \caption{Various Regression Models with degree = 3}
+\end{figure}
 
 At \textbf{degree = 3}, with cubic features:
 
@@ -192,6 +204,12 @@ At \textbf{degree = 3}, with cubic features:
 
 \subsubsection*{Degree = 6}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Images/Error-Metrics-Degree-6.png}
+    \caption{Various Regression Models with degree = 6}
+\end{figure}
+
 At \textbf{degree = 6}, with higher polynomial features:
 
 \begin{itemize}
@@ -208,6 +226,12 @@ At \textbf{degree = 6}, with higher polynomial features:
 
 \subsubsection*{Degree = 10}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Images/Error-Metrics-Degree-10.png}
+    \caption{Various Regression Models with degree = 10}
+\end{figure}
+
 At \textbf{degree = 10}, with even more complex features:
 
 \begin{itemize}
@@ -223,6 +247,8 @@ At \textbf{degree = 10}, with even more complex features:
 \end{itemize}
 
 In summary, as polynomial degree increases, models that are inherently prone to overfitting (such as Linear Regression and polynomial SVM) show severe overfitting with very low training errors but higher testing errors. Non-parametric methods (RandomForest, XGBoost, KNN, Neural Networks) tend to handle increased feature complexity better, but may also exhibit signs of overfitting as the degree of the polynomial features increases. The performance of each model highlights the trade-off between fitting complex patterns in training data and generalizing to unseen data.
+
+\clearpage
 
 \begin{customboxnew}[label={box:Q3d}]{Question (d)}
 	Summarize and explain the variations in the metrics \textbf{across degrees for a given regression method}. Cover both, train, and test metrics, and compare them.
@@ -255,7 +281,7 @@ In summary, as polynomial degree increases, models that are inherently prone to 
     \item \textbf{Degree = 10:} Extremely low training metrics, higher testing metrics due to overfitting.
 \end{itemize}
 
-\clearpage
+% \clearpage
 
 \begin{customboxnew}[label={box:Q3e}]{Question (e)}
 	When \textbf{degree = 1} which method(s) result in acceptable regression models? Why?
@@ -279,6 +305,8 @@ When \textbf{degree = 6}, the following methods result in acceptable regression 
     \item \textbf{Linear Regression, SVM (Polynomial Kernel):} May exhibit good training performance but often have high testing metrics due to overfitting with higher polynomial degrees.
 \end{itemize}
 
+\clearpage
+
 \begin{customboxnew}[label={box:Q3g}]{Question (g)}
 	As the value of degree is increased to 10 which regression methods show the most impact? Why?
 \end{customboxnew}
@@ -301,7 +329,7 @@ Non-parametric methods like \texttt{KNN} and \texttt{Decision Tree} generate goo
     \item \textbf{Decision Trees:} Automatically learn interactions and hierarchies in data through splits, adapting to various patterns without requiring pre-engineered features.
 \end{itemize}
 
-\clearpage
+% \clearpage
 
 \begin{customboxnew}[label={box:Q3i}]{Question (i)}
 	What are the limitations of the non-parametric methods?
@@ -337,7 +365,7 @@ Given the results, \verb|LinearRegression| should be used in the following conte
 
 However, for non-linear relationships or when higher degrees of complexity are needed, more advanced methods like RandomForest, XGBoost, or Neural Networks may be preferred.
 
-\clearpage
+% \clearpage
 
 \section*{Error Metrics}
 

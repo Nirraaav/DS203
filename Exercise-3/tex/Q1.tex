@@ -145,6 +145,19 @@ plt.show()
 \end{lstlisting}
 \textbf{Description:} The code concludes with displaying the generated plots for each regression model.
 
+\subsection*{6. Plotting Error Metrics}
+\begin{lstlisting}[language=Python, caption={Plotting Error Metrics}]
+print("Metrics - Train Data:\n")
+print(metric_table_train.to_string())
+print("-------------------------------------------------")
+
+print("Metrics - Test Data:\n")
+print(metric_table_test.to_string())
+print("-------------------------------------------------")
+\end{lstlisting}
+
+\textbf{Description:} The code prints the error metrics for each regression model on both training and testing datasets.
+
 \subsection*{Learnings from this Code}
 
 \begin{enumerate}[label=(\alph*)]
