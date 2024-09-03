@@ -169,7 +169,7 @@ For each polynomial degree, the following analysis compares the performance of d
 At \textbf{degree = 1}, with only linear features:
 
 \begin{itemize}
-    \item \textbf{Linear Regression and SVM (Linear Kernel):} 
+    \item \textbf{Linear Regression and SVM (Polynomial Kernel):} 
     \begin{itemize}
         \item \textbf{Training and Testing Metrics:} High, as these models cannot capture non-linear relationships effectively.
     \end{itemize}
@@ -191,7 +191,7 @@ At \textbf{degree = 1}, with only linear features:
 At \textbf{degree = 3}, with cubic features:
 
 \begin{itemize}
-    \item \textbf{Linear Regression and SVM (Linear Kernel):} 
+    \item \textbf{Linear Regression and SVM (Polynomial Kernel):} 
     \begin{itemize}
         \item \textbf{Training and Testing Metrics:} Improved, capturing more non-linear patterns compared to degree 1, though still limited.
     \end{itemize}
@@ -213,7 +213,7 @@ At \textbf{degree = 3}, with cubic features:
 At \textbf{degree = 6}, with higher polynomial features:
 
 \begin{itemize}
-    \item \textbf{Linear Regression and SVM (Linear Kernel):} 
+    \item \textbf{Linear Regression and SVM (Polynomial Kernel):} 
     \begin{itemize}
         \item \textbf{Training Metrics:} Significantly improved, fitting the data better. Testing metrics may start to increase due to overfitting.
     \end{itemize}
@@ -235,7 +235,7 @@ At \textbf{degree = 6}, with higher polynomial features:
 At \textbf{degree = 10}, with even more complex features:
 
 \begin{itemize}
-    \item \textbf{Linear Regression and SVM (Linear Kernel):} 
+    \item \textbf{Linear Regression and SVM (Polynomial Kernel):} 
     \begin{itemize}
         \item \textbf{Training Metrics:} Extremely low due to overfitting. Testing metrics often increase significantly, reflecting poor generalization.
     \end{itemize}
@@ -291,7 +291,7 @@ When \textbf{degree = 1}, the following methods result in acceptable regression 
 
 \begin{itemize}
     \item \textbf{RandomForest, XGBoost, KNN, Neural Network:} Provide acceptable performance with low training and testing metrics, as they can handle non-linear relationships effectively even with linear features.
-    \item \textbf{Linear Regression, SVM (Linear Kernel):} Typically result in poor models with high training and testing metrics, due to their inability to capture non-linear patterns.
+    \item \textbf{Linear Regression, SVM (Polynomial Kernel):} Typically result in poor models with high training and testing metrics, due to their inability to capture non-linear patterns.
 \end{itemize}
 
 \begin{customboxnew}[label={box:Q3f}]{Question (f)}
