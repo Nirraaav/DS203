@@ -1,0 +1,13 @@
+\section*{Step 1}
+
+\begin{custombox}[label={box:Q1}]{Step 1}
+	Divide each data set into ‘train’ and ‘test’ datasets, once, and use them for all subsequent steps.
+\end{custombox}
+
+To divide the data into `train' and `test' datasets, I used the \texttt{train\_test\_split} method from the \texttt{sklearn.model\_selection} module. I divided the data into $80\%$ training and $20\%$ testing datasets. I used the same split for all the subsequent steps.
+
+\begin{lstlisting}[language=Python, caption=Dividing the Data into Train and Test Datasets]
+x_train_v0, x_test_v0, y_train_v0, y_test_v0 = train_test_split(data_v0[['x1','x2']], data_v0['y'], test_size=0.2, random_state=42)
+x_train_v1, x_test_v1, y_train_v1, y_test_v1 = train_test_split(data_v1[['x1','x2']], data_v1['y'], test_size=0.2, random_state=42)
+x_train_v2, x_test_v2, y_train_v2, y_test_v2 = train_test_split(data_v2[['x1','x2']], data_v2['y'], test_size=0.2, random_state=42)
+\end{lstlisting}

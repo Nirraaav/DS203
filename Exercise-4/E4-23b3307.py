@@ -23,6 +23,39 @@ x_train_v0, x_test_v0, y_train_v0, y_test_v0 = train_test_split(data_v0[['x1','x
 x_train_v1, x_test_v1, y_train_v1, y_test_v1 = train_test_split(data_v1[['x1','x2']], data_v1['y'], test_size=0.2, random_state=42)
 x_train_v2, x_test_v2, y_train_v2, y_test_v2 = train_test_split(data_v2[['x1','x2']], data_v2['y'], test_size=0.2, random_state=42)
 
+plt.figure(figsize=(16, 6))
+plt.subplot(1, 2, 1)
+plt.scatter(x_train_v0['x1'], x_train_v0['x2'], c=y_train_v0, cmap='viridis', s=10)
+plt.title('Training data for Dataset 1')
+
+plt.subplot(1, 2, 2)
+plt.scatter(x_test_v0['x1'], x_test_v0['x2'], c=y_test_v0, cmap='viridis', s=10)
+plt.title('Test data for Dataset 1')
+plt.savefig('Images/dataset-1-train-test.png', dpi=400)
+plt.show()
+
+plt.figure(figsize=(16, 6))
+plt.subplot(1, 2, 1)
+plt.scatter(x_train_v1['x1'], x_train_v1['x2'], c=y_train_v1, cmap='viridis', s=10)
+plt.title('Training data for Dataset 2')
+
+plt.subplot(1, 2, 2)
+plt.scatter(x_test_v1['x1'], x_test_v1['x2'], c=y_test_v1, cmap='viridis', s=10)
+plt.title('Test data for Dataset 2')
+plt.savefig('Images/dataset-2-train-test.png', dpi=400)
+plt.show()
+
+plt.figure(figsize=(16, 6))
+plt.subplot(1, 2, 1)
+plt.scatter(x_train_v2['x1'], x_train_v2['x2'], c=y_train_v2, cmap='viridis', s=10)
+plt.title('Training data for Dataset 3')
+
+plt.subplot(1, 2, 2)
+plt.scatter(x_test_v2['x1'], x_test_v2['x2'], c=y_test_v2, cmap='viridis', s=10)
+plt.title('Test data for Dataset 3')
+plt.savefig('Images/dataset-3-train-test.png', dpi=400)
+plt.show()
+
 datasets = [(data_v0, "Dataset 1"), (data_v1, "Dataset 2"), (data_v2, "Dataset 3")]
 
 for i, (data, label) in enumerate(datasets):
@@ -71,7 +104,7 @@ for i, (data, label) in enumerate(datasets):
     for name, clf in classifiers.items():
         clf.fit(x_train, y_train)
         y_pred = clf.predict(x_test)
-        acc = accuracy_score(y_test, y_pred) # model.score(x_test, y_test)
+        acc = accuracy_score(y_test, y_pred)
         print(f"{name} Accuracy: {acc:.2f}, {clf.score(x_test, y_test):.2f}")
         print(classification_report(y_test, y_pred))
 

@@ -1,0 +1,43 @@
+\section*{Pre-requisites}
+
+\subsection{Importing Libraries}
+
+I imported the necessary libraries for this assignment, like \texttt{pandas} for data manipulation, \texttt{numpy} for numerical operations, \texttt{matplotlib} for plotting, and \texttt{sklearn} for machine learning models and metrics. I also imported \texttt{os} to create directories for saving the plots and metrics.
+
+\begin{lstlisting}[language=Python, caption=Importing Libraries]
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import classification_report, accuracy_score, roc_auc_score, roc_curve
+import os
+\end{lstlisting}
+
+\subsection{Creating Directories}
+
+Here, I created two directories, \texttt{Images} and \texttt{Metrics}, to save the plots and metrics generated in the subsequent steps.
+
+\begin{lstlisting}[language=Python, caption=Creating Directories]
+if not os.path.exists('Images'):
+    os.makedirs('Images')
+
+if not os.path.exists('Metrics'):
+    os.makedirs('Metrics')
+\end{lstlisting}
+
+\subsection{Loading the Data}
+
+I loaded the data from the $3$ CSV files into \texttt{pandas DataFrame}. Each file contains $1440$ rows and $3$ columns. First $2$ columns give the location of the point, and the last column gives the class of the point.
+
+\begin{lstlisting}[language=Python, caption=Loading the Data]
+data_v0 = pd.read_csv('clusters-4-v0.csv')
+data_v1 = pd.read_csv('clusters-4-v1.csv')
+data_v2 = pd.read_csv('clusters-4-v2.csv')
+\end{lstlisting}
+
+
+
