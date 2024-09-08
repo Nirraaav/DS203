@@ -25,33 +25,33 @@ x_train_v2, x_test_v2, y_train_v2, y_test_v2 = train_test_split(data_v2[['x1','x
 
 plt.figure(figsize=(16, 6))
 plt.subplot(1, 2, 1)
-plt.scatter(x_train_v0['x1'], x_train_v0['x2'], c=y_train_v0, cmap='viridis', s=10)
+plt.scatter(x_train_v0['x1'], x_train_v0['x2'], c=y_train_v0, cmap='viridis', s=30, edgecolors='black')
 plt.title('Training data for Dataset 1')
 
 plt.subplot(1, 2, 2)
-plt.scatter(x_test_v0['x1'], x_test_v0['x2'], c=y_test_v0, cmap='viridis', s=10)
+plt.scatter(x_test_v0['x1'], x_test_v0['x2'], c=y_test_v0, cmap='viridis', s=30, edgecolors='black')
 plt.title('Test data for Dataset 1')
 plt.savefig('Images/dataset-1-train-test.png', dpi=400)
 plt.show()
 
 plt.figure(figsize=(16, 6))
 plt.subplot(1, 2, 1)
-plt.scatter(x_train_v1['x1'], x_train_v1['x2'], c=y_train_v1, cmap='viridis', s=10)
+plt.scatter(x_train_v1['x1'], x_train_v1['x2'], c=y_train_v1, cmap='viridis', s=30, edgecolors='black')
 plt.title('Training data for Dataset 2')
 
 plt.subplot(1, 2, 2)
-plt.scatter(x_test_v1['x1'], x_test_v1['x2'], c=y_test_v1, cmap='viridis', s=10)
+plt.scatter(x_test_v1['x1'], x_test_v1['x2'], c=y_test_v1, cmap='viridis', s=30, edgecolors='black')
 plt.title('Test data for Dataset 2')
 plt.savefig('Images/dataset-2-train-test.png', dpi=400)
 plt.show()
 
 plt.figure(figsize=(16, 6))
 plt.subplot(1, 2, 1)
-plt.scatter(x_train_v2['x1'], x_train_v2['x2'], c=y_train_v2, cmap='viridis', s=10)
+plt.scatter(x_train_v2['x1'], x_train_v2['x2'], c=y_train_v2, cmap='viridis', s=30, edgecolors='black')
 plt.title('Training data for Dataset 3')
 
 plt.subplot(1, 2, 2)
-plt.scatter(x_test_v2['x1'], x_test_v2['x2'], c=y_test_v2, cmap='viridis', s=10)
+plt.scatter(x_test_v2['x1'], x_test_v2['x2'], c=y_test_v2, cmap='viridis', s=30, edgecolors='black')
 plt.title('Test data for Dataset 3')
 plt.savefig('Images/dataset-3-train-test.png', dpi=400)
 plt.show()
@@ -61,7 +61,7 @@ datasets = [(data_v0, "Dataset 1"), (data_v1, "Dataset 2"), (data_v2, "Dataset 3
 for i, (data, label) in enumerate(datasets):
     plt.figure(figsize=(16, 10))
     
-    plt.scatter(data['x1'], data['x2'], c=data['y'], cmap='viridis', s=10)
+    plt.scatter(data['x1'], data['x2'], c=data['y'], cmap='viridis', s=100, edgecolors='black')
     plt.title(f'Scatter Plot of {label}')
     plt.xlabel('x1')
     plt.ylabel('x2')
@@ -84,6 +84,7 @@ def draw_decision_boundary(model, X, y, resolution=100, size=10, edgecolor='k'):
     plt.contourf(xx, yy, Z, cmap='viridis', alpha=0.3)
     plt.scatter(X[:, 0], X[:, 1], c=y, edgecolors=edgecolor, cmap='viridis', s=size)  
 
+# Initialize classifiers
 classifiers = {
     'Logistic Regression': LogisticRegression(),
     'SVC Linear': SVC(kernel='linear', probability=True),
@@ -104,7 +105,7 @@ for i, (data, label) in enumerate(datasets):
     for name, clf in classifiers.items():
         clf.fit(x_train, y_train)
         y_pred = clf.predict(x_test)
-        acc = accuracy_score(y_test, y_pred)
+        acc = accuracy_score(y_test, y_pred) # model.score(x_test, y_test)
         print(f"{name} Accuracy: {acc:.2f}, {clf.score(x_test, y_test):.2f}")
         print(classification_report(y_test, y_pred))
 
@@ -126,6 +127,7 @@ def get_metrics(y_true, y_pred, y_prob):
     recalls = [report[f'{i+1}']['recall'] for i in range(4)]
     f1s = [report[f'{i+1}']['f1-score'] for i in range(4)]
     
+    # AUC calculation using true values and predicted probabilities
     aucs = roc_auc_score(pd.get_dummies(y_true), y_prob, multi_class='ovr', average=None)
     
     precision_avg = sum(precisions) / 4

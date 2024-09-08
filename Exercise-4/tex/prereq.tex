@@ -21,6 +21,10 @@ import os
 
 Here, I created two directories, \texttt{Images} and \texttt{Metrics}, to save the plots and metrics generated in the subsequent steps.
 
+\begin{remark*}
+    I used the \texttt{os} module to create directories. The \texttt{os.makedirs()} function creates a directory if it does not exist.
+\end{remark*}
+
 \begin{lstlisting}[language=Python, caption=Creating Directories]
 if not os.path.exists('Images'):
     os.makedirs('Images')

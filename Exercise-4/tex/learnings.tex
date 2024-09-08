@@ -1,0 +1,29 @@
+\section*{Main Learnings}
+
+This report summarizes the key learnings from the classification exercise, where multiple machine learning algorithms were applied to three datasets exhibiting varying degrees of class separability. Through this assignment, I explored the strengths and limitations of several classification models, including Logistic Regression, Support Vector Classifiers (SVCs), Random Forests, and Neural Networks, across different data complexity levels. The assignment not only reinforced my understanding of the theoretical aspects of these algorithms but also provided insights into their practical performance under diverse conditions.
+
+\subsection*{Key Learnings}
+\subsubsection*{Importance of Data Structure and Class Boundaries}
+A significant takeaway from this assignment was the impact of data structure, particularly class separation, on model performance. In Dataset 1, where the class boundaries were distinct, simpler models such as Logistic Regression and SVC with a linear kernel performed exceptionally well. Their linear decision boundaries were well-suited to this dataset, and increasing model complexity did not yield substantial performance gains.
+
+In contrast, Datasets 2 and 3, which exhibited increasing levels of class overlap, posed greater challenges for linear models. The overlap led to decreased performance metrics such as accuracy, precision, and recall. This highlighted the fact that data with non-linear class boundaries requires more sophisticated models, such as SVC with an rbf kernel or Neural Networks, which are capable of capturing complex relationships between features.
+
+\subsubsection*{Effect of Model Complexity}
+This assignment also taught me the importance of balancing model complexity with the data at hand. For Dataset 1, simple models like Logistic Regression and linear SVC achieved high accuracy without overfitting. However, in more complex datasets, non-linear classifiers like Random Forest and Neural Networks outperformed linear models. The ability of these complex models to handle non-linear patterns proved crucial, especially for Dataset 3, which had a high degree of class mixing.
+
+However, increasing model complexity comes with risks, particularly overfitting. Neural Networks with deeper architectures, such as \texttt{hidden\_layer\_sizes=(5,5,5)}, demonstrated higher accuracy but also exhibited signs of overfitting, especially in Dataset 1. This reinforced the lesson that while deep models may have greater expressive power, they should be used judiciously, with careful tuning of hyperparameters such as the number of hidden layers or minimum leaf sizes in Random Forests.
+
+\subsubsection*{Model Selection Based on Data Complexity}
+The assignment underscored the necessity of selecting models based on the complexity of the data. For simpler, linearly separable data, Logistic Regression or SVC with a linear kernel proved effective. These models are computationally efficient and provided near-optimal performance on Dataset 1.
+
+However, for more complex datasets like Dataset 2 and Dataset 3, where class boundaries were non-linear or highly mixed, non-linear classifiers like SVC with an rbf kernel, Random Forests, and Neural Networks were essential. The Random Forest classifier with \texttt{min\_samples\_leaf=5}, for example, struck a good balance between bias and variance, reducing overfitting while maintaining strong performance on the test sets.
+
+This learning emphasized that no single model is universally optimal across all datasets. The right choice depends on the characteristics of the data, including class separability and the presence of non-linear patterns.
+
+\subsubsection*{Evaluating Models with Comprehensive Metrics}
+One of the most valuable aspects of this assignment was the experience of evaluating models using a broad range of metrics, including accuracy, precision, recall, F1-score, and AUC. I learned that accuracy alone can be misleading, especially in datasets with class imbalances or overlapping classes. Metrics like precision and recall, which provide class-specific insights, were crucial in understanding model performance, particularly for models that struggled with certain classes.
+
+Additionally, the Area Under the Curve (AUC) metric proved useful for evaluating the classifier's ability to differentiate between classes, especially for the more complex datasets. This comprehensive evaluation enabled a more nuanced understanding of each model's strengths and weaknesses across different datasets.
+
+\subsection*{Conclusion}
+Overall, this assignment provided invaluable insights into the behavior of various classification algorithms across datasets with different levels of complexity. I learned that data characteristics, particularly class boundaries, heavily influence model performance and that increasing model complexity should be done with caution to avoid overfitting. Finally, I gained an appreciation for the importance of using a wide range of evaluation metrics to fully assess a model's effectiveness. These lessons will be instrumental in future machine learning projects, where model selection, tuning, and evaluation will be critical for achieving optimal results.
