@@ -4,6 +4,8 @@
 	Review the data using appropriate plots and understand the overall structure of the data. Comment on the data and anticipate how well \texttt{LogisticRegression} will perform on the data.
 \end{custombox}
 
+\vspace{10mm}
+
 This is how I plotted the 3 datasets
 
 \begin{lstlisting}[language=Python, caption=Plotting the Datasets]
@@ -26,6 +28,10 @@ for i, (data, label) in enumerate(datasets):
     class_counts = data['y'].value_counts()
     print(f"Class balance in {label}:\n{class_counts}\n")
 \end{lstlisting}
+
+\begin{remark*}
+    All Images generated throughout the report are saved in the \texttt{Images} folder.
+\end{remark*}
 
 \begin{figure}[H]
     \centering

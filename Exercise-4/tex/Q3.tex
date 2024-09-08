@@ -3,18 +3,83 @@
 \begin{custombox}[label={box:Q3}]{Step 3}
 	Use the following algorithms / variants to process the datasets:
     \begin{enumerate}[label=\alph*)]
-        \item[a.] Logistic Regression
-        \item[b.] SVC – with `\texttt{linear}' kernel (what is `\texttt{linear}'?)
-        \item[c.] SVC – with `\texttt{rbf}’ kernel (what is `\texttt{rbf}'?)
-        \item[d.] Random Forest Classifier – with \texttt{min\_samples\_leaf=1}
-        \item[e.] Random Forest Classifier – with \texttt{min\_samples\_leaf=3}
-        \item[f.] Random Forest Classifier – with \texttt{min\_samples\_leaf=5}
-        \item[g.] Neural Network Classifier – with \texttt{hidden\_layer\_sizes=(5)}
-        \item[h.] Neural Network Classifier – with \texttt{hidden\_layer\_sizes=(5,5)}
-        \item[i.] Neural Network Classifier – with \texttt{hidden\_layer\_sizes=(5,5,5)}
-        \item[j.] Neural Network Classifier – with \texttt{hidden\_layer\_sizes=(10)}
+        \item Logistic Regression
+        \item SVC – with `\texttt{linear}' kernel (what is `\texttt{linear}'?)
+        \item SVC – with `\texttt{rbf}’ kernel (what is `\texttt{rbf}'?)
+        \item Random Forest Classifier – with \texttt{min\_samples\_leaf=1}
+        \item Random Forest Classifier – with \texttt{min\_samples\_leaf=3}
+        \item Ranndom Forest Classifier – with \texttt{min\_samples\_leaf=5}
+        \item Neural Network Classifier – with \texttt{hidden\_layer\_sizes=(5)}
+        \item Neural Network Classifier – with \texttt{hidden\_layer\_sizes=(5,5)}
+        \item Neural Network Classifier – with \texttt{hidden\_layer\_sizes=(5,5,5)}
+        \item Neural Network Classifier – with \texttt{hidden\_layer\_sizes=(10)}
     \end{enumerate}
 \end{custombox}
+
+\vspace{10mm}
+
+The list of classifiers is shown in Listing \ref{lst:Q3}. The classifiers are initialized with very few parameters. The classifiers are:
+
+\begin{lstlisting}[language=Python, caption=List of Classifiers, label={lst:Q2}]
+classifiers = {
+    'Logistic Regression': LogisticRegression(),
+    'SVC Linear': SVC(kernel='linear', probability=True),
+    'SVC RBF': SVC(kernel='rbf', probability=True),
+    'Random Forest (min_samples_leaf=1)': RandomForestClassifier(min_samples_leaf=1),
+    'Random Forest (min_samples_leaf=3)': RandomForestClassifier(min_samples_leaf=3),
+    'Random Forest (min_samples_leaf=5)': RandomForestClassifier(min_samples_leaf=5),
+    'Neural Network (hidden_layer_sizes=(5,))': MLPClassifier(hidden_layer_sizes=(5,)),
+    'Neural Network (hidden_layer_sizes=(5,5))': MLPClassifier(hidden_layer_sizes=(5,5)),
+    'Neural Network (hidden_layer_sizes=(5,5,5))': MLPClassifier(hidden_layer_sizes=(5,5,5)),
+    'Neural Network (hidden_layer_sizes=(10,))': MLPClassifier(hidden_layer_sizes=(10,))
+}
+\end{lstlisting}
+
+Then I have defined a function \texttt{draw\_decision\_boundary} which plots the decision boundary for the classifiers. The function is shown in Listing \ref{lst:Q1}.
+
+\begin{lstlisting}[language=Python, caption=Function to Draw Decision Boundary, label={lst:Q1}]
+def draw_decision_boundary(model, X, y, resolution=100, size=10, edgecolor='k'):
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx, yy = np.meshgrid(np.linspace(x_min, x_max, resolution), np.linspace(y_min, y_max, resolution))
+
+    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+
+    plt.contourf(xx, yy, Z, cmap='viridis', alpha=0.3)
+    plt.scatter(X[:, 0], X[:, 1], c=y, edgecolors=edgecolor, cmap='viridis', s=size) 
+\end{lstlisting}
+
+Then I process the data using the classifiers. The code is shown in Listing \ref{lst:Q3}. The code processes the data using the classifiers and prints the classification report and accuracy. It also plots the decision boundary for each classifier. The decision boundary is plotted using the \texttt{draw\_decision\_boundary} function which is defined in Listing \ref{lst:Q1}.
+
+\begin{lstlisting}[language=Python, caption=Processing Data using Classifiers, label={lst:Q3}]
+for i, (data, label) in enumerate(datasets):
+    print(f"Classification results for {label}:\n")
+    x_train, x_test, y_train, y_test = train_test_split(data[['x1','x2']], data['y'], test_size=0.2, random_state=42)
+    
+    for name, clf in classifiers.items():
+        clf.fit(x_train, y_train)
+        y_pred = clf.predict(x_test)
+        acc = accuracy_score(y_test, y_pred)
+        print(f"{name} Accuracy: {acc:.2f}, {clf.score(x_test, y_test):.2f}")
+        print(classification_report(y_test, y_pred))
+
+        plt.figure(figsize=(16, 10))
+        draw_decision_boundary(clf, x_train.values, y_train.values, size=10)
+        plt.title(f'Decision Boundary for {name} on {label}')
+        plt.xlabel('x1')
+        plt.ylabel('x2')
+        plt.tight_layout()
+        plt.savefig(f'Images/dataset-{i+1}-{name}-decision-boundary.png', dpi=400)
+        plt.show()
+    print("\n")
+\end{lstlisting}
+
+
+
+
+
+
 
 
 

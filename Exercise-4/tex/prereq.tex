@@ -1,6 +1,6 @@
 \section*{Pre-requisites}
 
-\subsection{Importing Libraries}
+\subsection*{Importing Libraries}
 
 I imported the necessary libraries for this assignment, like \texttt{pandas} for data manipulation, \texttt{numpy} for numerical operations, \texttt{matplotlib} for plotting, and \texttt{sklearn} for machine learning models and metrics. I also imported \texttt{os} to create directories for saving the plots and metrics.
 
@@ -17,7 +17,7 @@ from sklearn.metrics import classification_report, accuracy_score, roc_auc_score
 import os
 \end{lstlisting}
 
-\subsection{Creating Directories}
+\subsection*{Creating Directories}
 
 Here, I created two directories, \texttt{Images} and \texttt{Metrics}, to save the plots and metrics generated in the subsequent steps.
 
@@ -29,7 +29,7 @@ if not os.path.exists('Metrics'):
     os.makedirs('Metrics')
 \end{lstlisting}
 
-\subsection{Loading the Data}
+\subsection*{Loading the Data}
 
 I loaded the data from the $3$ CSV files into \texttt{pandas DataFrame}. Each file contains $1440$ rows and $3$ columns. First $2$ columns give the location of the point, and the last column gives the class of the point.
 
