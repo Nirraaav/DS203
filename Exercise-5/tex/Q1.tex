@@ -1,0 +1,91 @@
+\section{Step 1}
+
+\begin{custombox}[label={box:Q1}]{Step 1}
+	Enumerate and explain three measures (metrics) that you will use to assess the outcome of clustering algorithms.
+\end{custombox}
+
+% \vspace{10mm}
+
+In this exercise, we have been given 3 datasets whith points in $\mathbb{R}^2$, and we have not been given the label for the points. We have to use unsupervised learning algorithms to cluster the points. We will use the following metrics to assess the outcome of clustering algorithms:
+
+\subsection*{Silhouette Score}
+The \textbf{Silhouette Score} measures how well each data point fits within its assigned cluster compared to other clusters. It provides insight into both the cohesion and separation of clusters.
+
+\subsubsection*{Definition}
+For a given data point \(i\), the Silhouette Score \(s(i)\) is calculated as follows:
+
+\[
+s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}
+\]
+
+where:
+\begin{itemize}
+    \item \(a(i)\) is the average distance between \(i\) and all other points in the same cluster (cohesion).
+    \item \(b(i)\) is the minimum average distance between \(i\) and all points in any other cluster (separation).
+\end{itemize}
+
+\subsubsection*{Interpretation}
+The Silhouette Score ranges from -1 to 1:
+\begin{itemize}
+    \item A score close to 1 indicates that the data point is well-matched to its own cluster and poorly matched to neighboring clusters.
+    \item A score close to 0 indicates that the data point is on or very close to the decision boundary between two neighboring clusters.
+    \item A negative score indicates that the data point might have been assigned to the wrong cluster.
+\end{itemize}
+
+The overall Silhouette Score is the mean of the individual scores. A high average score suggests that the clustering configuration is appropriate and clusters are well-separated.
+
+\subsection*{Davies-Bouldin Index}
+The \textbf{Davies-Bouldin Index} evaluates the separation and compactness of clusters. It measures the average similarity between each cluster and its most similar one.
+
+\subsubsection*{Definition}
+The Davies-Bouldin Index \(DBI\) is defined as:
+
+\[
+DBI = \frac{1}{k} \sum_{i=1}^{k} \max_{j \neq i} \frac{s_i + s_j}{d_{ij}}
+\]
+
+where:
+\begin{itemize}
+    \item \(k\) is the number of clusters.
+    \item \(s_i\) and \(s_j\) are the average distances within clusters \(i\) and \(j\) respectively.
+    \item \(d_{ij}\) is the distance between the centroids of clusters \(i\) and \(j\).
+\end{itemize}
+
+\subsubsection*{Interpretation}
+The Davies-Bouldin Index is always non-negative. Lower values indicate better clustering solutions:
+\begin{itemize}
+    \item A lower DBI signifies that the clusters are more distinct and compact.
+    \item A higher DBI indicates that the clusters are less distinct and more similar to each other.
+\end{itemize}
+
+The index helps in identifying clustering solutions where clusters are well-separated and compact.
+
+\subsection*{Calinski-Harabasz Index}
+The \textbf{Calinski-Harabasz Index} assesses cluster separation and compactness by evaluating the ratio of between-cluster dispersion to within-cluster dispersion.
+
+\subsubsection*{Definition}
+The Calinski-Harabasz Index \(CH\) is defined as:
+
+\[
+CH = \dfrac{ \frac{1}{k-1} \sum_{i=1}^{k} n_i (\mathbf{\bar{x}}_i - \mathbf{\bar{x}})^2 }{ \frac{1}{n-k} \sum_{i=1}^{n} (\mathbf{x}_i - \mathbf{\bar{x}}_i)^2 }
+\]
+
+where:
+\begin{itemize}
+    \item \(n_i\) is the number of data points in cluster \(i\) and \(n\) is the total number of data points.
+    \item \(\mathbf{\bar{x}}_i\) is the centroid of cluster \(i\).
+    \item \(\mathbf{\bar{x}}\) is the overall mean of the data.
+\end{itemize}
+
+\subsubsection*{Interpretation}
+The Calinski-Harabasz Index typically increases as the number of clusters increases, so it is used to compare different clustering solutions:
+\begin{itemize}
+    \item A higher CH index indicates that the clusters are well-separated and compact.
+    \item A lower CH index suggests that the clusters are less distinct and more dispersed.
+\end{itemize}
+
+The index is useful for selecting the optimal number of clusters by comparing different clustering solutions.
+
+
+
+\clearpage
