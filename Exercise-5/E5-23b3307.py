@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN
 from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score, adjusted_rand_score, confusion_matrix
+from scipy.cluster.hierarchy import dendrogram as plot_dendrogram, linkage
 import os
 
 data_v0 = pd.read_csv('clusters-5-v0.csv')
@@ -55,7 +56,6 @@ def plot_clusters(data, labels, title, name):
 def run_clustering(data, name):
     results = []
     
-    # K-Means clustering
     kmeans = KMeans(n_clusters=4, random_state=42)
     kmeans_labels = kmeans.fit_predict(data)
     plot_clusters(data, kmeans_labels, 'K-Means Clustering', name)
@@ -67,7 +67,6 @@ def run_clustering(data, name):
     ]
     results.append(kmeans_metrics)
 
-    # Agglomerative clustering
     agglomerative = AgglomerativeClustering(n_clusters=4)
     agglomerative_labels = agglomerative.fit_predict(data)
     plot_clusters(data, agglomerative_labels, 'Agglomerative Clustering', name)
@@ -79,9 +78,18 @@ def run_clustering(data, name):
     ]
     results.append(agglomerative_metrics)
 
-    # DBSCAN clustering with parameter tuning
-    eps_values = np.linspace(0.01, 4, 200)  # 200 values between 0.01 and 4
-    min_samples_values = range(4, 21)
+    linkage_matrix = linkage(data, method='ward')
+
+    plt.figure(figsize=(16, 10))
+    plt.title('Dendrogram for Agglomerative Clustering')
+    plt.xlabel('Sample Index')
+    plt.ylabel('Distance')
+    plot_dendrogram(linkage_matrix, truncate_mode='level', p=4)
+    plt.savefig(f'Images/{name}-Agglomerative-Dendrogram.png', dpi=400)
+    plt.show()
+
+    # eps_values = np.linspace(0.01, 4, 200)
+    # min_samples_values = range(4, 21)
 
     best_dbscan_labels = None
     best_dbscan_score = -np.inf
@@ -96,6 +104,8 @@ def run_clustering(data, name):
     elif name == 'Clusters-5-v2':
         eps = 0.17040201005025127
         min_samples = 13
+
+    # I found this 3 best_eps_values after running the dataset multiple times and checking the best silhouette score
 
     dbscan = DBSCAN(eps=eps, min_samples=min_samples)
     dbscan_labels = dbscan.fit_predict(data)
@@ -112,17 +122,16 @@ def run_clustering(data, name):
             calinski_harabasz_score(data, best_dbscan_labels),
             davies_bouldin_score(data, best_dbscan_labels)
         ]
+        print(f"Best DBSCAN parameters: eps={best_eps}, min_samples={best_min_samples}")
     else:
         dbscan_metrics = ['DBSCAN', 'N/A', 'N/A', 'N/A']
         print("DBSCAN could not find exactly 4 clusters.")
     
     results.append(dbscan_metrics)
 
-    # Save metrics to CSV
     result_df = pd.DataFrame(results, columns=['Algorithm', 'Silhouette Score', 'Calinski-Harabasz Score', 'Davies-Bouldin Score'])
     result_df.to_csv(f'Metrics/{name}-metrics.csv', index=False)
 
-    # plot the metrics for each dataset and each clustering algorithm
     plt.figure(figsize=(16, 10))
     plt.plot(result_df['Algorithm'], result_df['Silhouette Score'], marker='o', label='Silhouette Score')
     plt.plot(result_df['Algorithm'], result_df['Calinski-Harabasz Score'], marker='o', label='Calinski-Harabasz Score')
@@ -137,8 +146,6 @@ def run_clustering(data, name):
 
     return results
 
-# Example use case:
-# Assuming 'dataset' is a dictionary where the key is the dataset name and the value is the data
 for name, data in dataset.items():
     scaled_data = scalers[name]
     clustering_results = run_clustering(scaled_data, name)

@@ -46,26 +46,41 @@ def run_clustering(data, name):
     ]
     results.append(agglomerative_metrics)
 
-    eps_values = np.linspace(0.01, 4, 200)  
-    min_samples_values = range(4, 21)
+    linkage_matrix = linkage(data, method='ward')
+
+    plt.figure(figsize=(16, 10))
+    plt.title('Dendrogram for Agglomerative Clustering')
+    plt.xlabel('Sample Index')
+    plt.ylabel('Distance')
+    plot_dendrogram(linkage_matrix, truncate_mode='level', p=4)
+    plt.savefig(f'Images/{name}-Agglomerative-Dendrogram.png', dpi=400)
+    plt.show()
+
+    # eps_values = np.linspace(0.01, 4, 200)
+    # min_samples_values = range(4, 21)
 
     best_dbscan_labels = None
     best_dbscan_score = -np.inf
     best_eps, best_min_samples = None, None
 
-    for eps in eps_values:
-        for min_samples in min_samples_values:
-            dbscan = DBSCAN(eps=eps, min_samples=min_samples)
-            dbscan_labels = dbscan.fit_predict(data)
-            unique_labels = len(set(dbscan_labels) - {-1}) 
+    if name == 'Clusters-5-v0':
+        eps = 0.3107537688442211
+        min_samples = 9
+    elif name == 'Clusters-5-v1':
+        eps = 0.23055276381909548
+        min_samples = 20
+    elif name == 'Clusters-5-v2':
+        eps = 0.17040201005025127
+        min_samples = 13
 
-            if unique_labels == 4:
-                score = silhouette_score(data, dbscan_labels)
-                if score > best_dbscan_score:
-                    best_dbscan_score = score
-                    best_dbscan_labels = dbscan_labels
-                    best_eps = eps
-                    best_min_samples = min_samples
+    # I found this 3 best_eps_values after running the dataset multiple times and checking the best silhouette score
+
+    dbscan = DBSCAN(eps=eps, min_samples=min_samples)
+    dbscan_labels = dbscan.fit_predict(data)
+    best_dbscan_labels = dbscan_labels
+    best_dbscan_score = silhouette_score(data, dbscan_labels)
+    best_eps = eps
+    best_min_samples = min_samples
 
     if best_dbscan_labels is not None:
         plot_clusters(data, best_dbscan_labels, 'DBSCAN Clustering', name)
@@ -102,6 +117,7 @@ def run_clustering(data, name):
 for name, data in dataset.items():
     scaled_data = scalers[name]
     clustering_results = run_clustering(scaled_data, name)
+
 \end{lstlisting}
 
 \begin{figure}[H]
@@ -119,13 +135,18 @@ for name, data in dataset.items():
 \end{figure}
 
 \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Images/Clusters-5-v0-Agglomerative-Dendrogram.png}
+    \caption{Dataset 1: Agglomerative Clustering Dendrogram}
+    \label{fig:clusters-5-v0-agglomerative-dendrogram}
+\end{figure}
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{Images/Clusters-5-v0-DBSCAN Clustering.png}
+	\includegraphics[width=0.75\linewidth]{Images/Clusters-5-v0-DBSCAN Clustering.png}
 	\caption{Dataset 1: DBSCAN Clustering}
 	\label{fig:clusters-5-v0-dbscan-clustering}
 \end{figure}
-
-We observe that all 3 clustering algorithms have successfully clustered the observations in Dataset 1. The K-Means and Agglomerative Clustering algorithms have created well-defined clusters. The DBSCAN algorithm has also clustered the observations effectively. \\
 
 All 3 algorithms give almost the same classification results, with the DBSCAN algorithm having the highest Silhouette Score. The DBSCAN algorithm has found the best parameters for the dataset, which is evident from the high Silhouette Score.
 
@@ -146,8 +167,15 @@ All 3 algorithms give almost the same classification results, with the DBSCAN al
 \end{figure}
 
 \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Images/Clusters-5-v1-Agglomerative-Dendrogram.png}
+    \caption{Dataset 2: Agglomerative Clustering Dendrogram}
+    \label{fig:clusters-5-v1-agglomerative-dendrogram}
+\end{figure}
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{Images/Clusters-5-v1-DBSCAN Clustering.png}
+	\includegraphics[width=0.75\linewidth]{Images/Clusters-5-v1-DBSCAN Clustering.png}
 	\caption{Dataset 2: DBSCAN Clustering}
 	\label{fig:clusters-5-v1-dbscan-clustering}
 \end{figure}
@@ -173,8 +201,15 @@ The Silhouette Score for DBSCAN is lower than that of K-Means and Agglomerative 
 \end{figure}
 
 \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Images/Clusters-5-v2-Agglomerative-Dendrogram.png}
+    \caption{Dataset 3: Agglomerative Clustering Dendrogram}
+    \label{fig:clusters-5-v2-agglomerative-dendrogram}
+\end{figure}
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{Images/Clusters-5-v2-DBSCAN Clustering.png}
+	\includegraphics[width=0.75\linewidth]{Images/Clusters-5-v2-DBSCAN Clustering.png}
 	\caption{Dataset 3: DBSCAN Clustering}
 	\label{fig:clusters-5-v2-dbscan-clustering}
 \end{figure}
