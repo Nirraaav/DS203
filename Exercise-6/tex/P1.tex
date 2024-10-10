@@ -23,10 +23,11 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import matplotlib.pyplot as plt
-from scipy import stats
+from sklearn.linear_model import RANSACRegressor, LinearRegression
+from statsmodels.nonparametric.smoothers_lowess import lowess
 import os
 
-# Create directory for saving images
+# Create directory for saving images if it doesn't exist
 if not os.path.exists('Images'):
     os.makedirs('Images')
 
@@ -38,7 +39,7 @@ print(data.describe())
 
 # Plot the current over time using Plotly
 fig = px.line(data, x='Timestamp', y='HT R Phase Current', title='HT R Phase Current over Time')
-fig.write_image("Images/ht_r_phase_current.png", scale=1, width=1920, height=1080, format='png')
+# fig.write_image("Images/ht_r_phase_current.png", scale=1, width=1920, height=1080, format='png')
 fig.show()
 
 # Part B: Identify a 2-week unstable period
@@ -67,19 +68,16 @@ Using the plot above, we can identify an unstable period between July 30, 2019, 
 Here we apply four outlier handling techniques to the unstable period: imputation, trimming, capping, and robust estimation. The results are visualized to compare the effectiveness of each method.
 
 \begin{lstlisting}[language=Python, gobble=0]
-# Method 1: Imputation (Replacing outlier values with the mean)
-mean_value = unstable_period['HT R Phase Current'].mean()
-median_value = unstable_period['HT R Phase Current'].median()
-unstable_period['Current_Imputed_Mean'] = unstable_period['HT R Phase Current'].copy()
-unstable_period.loc[(unstable_period['HT R Phase Current'] > unstable_period['HT R Phase Current'].quantile(0.95)) | (unstable_period['HT R Phase Current'] < unstable_period['HT R Phase Current'].quantile(0.05)), 'Current_Imputed_Mean'] = mean_value
-
 unstable_period['Current_Imputed_Median'] = unstable_period['HT R Phase Current'].copy()
-unstable_period.loc[(unstable_period['HT R Phase Current'] > unstable_period['HT R Phase Current'].quantile(0.95)) | (unstable_period['HT R Phase Current'] < unstable_period['HT R Phase Current'].quantile(0.05)), 'Current_Imputed_Median'] = median_value
+unstable_period.loc[(unstable_period['HT R Phase Current'] > unstable_period['HT R Phase Current'].quantile(0.95)) |
+                    (unstable_period['HT R Phase Current'] < unstable_period['HT R Phase Current'].quantile(0.05)), 
+                    'Current_Imputed_Median'] = median_value
 
 # Method 2: Trimming (Removing outliers)
 q_low = unstable_period['HT R Phase Current'].quantile(0.1)
 q_high = unstable_period['HT R Phase Current'].quantile(0.9)
-unstable_period_trimmed = unstable_period[(unstable_period['HT R Phase Current'] >= q_low) & (unstable_period['HT R Phase Current'] <= q_high)]
+unstable_period_trimmed = unstable_period[(unstable_period['HT R Phase Current'] >= q_low) & 
+                                          (unstable_period['HT R Phase Current'] <= q_high)]
 
 # Method 3: Capping (Setting a cap on the maximum and minimum values)
 max_value = unstable_period['HT R Phase Current'].quantile(0.95)
@@ -89,15 +87,21 @@ unstable_period['Current_Capped'] = np.where(unstable_period['Current_Capped'] >
 unstable_period['Current_Capped'] = np.where(unstable_period['Current_Capped'] < min_value, min_value, unstable_period['Current_Capped'])
 
 # Method 4: Robust Estimation (Using RANSAC regression)
-from sklearn.linear_model import RANSACRegressor, LinearRegression
-
 # Prepare the data for RANSAC
-X = unstable_period['Timestamp'].map(pd.Timestamp.timestamp).values.reshape(-1, 1)  # Convert datetime to timestamp
+X = unstable_period['Timestamp'].astype(np.int64) // 10**9  # Convert datetime to timestamp in seconds
+X = X.values.reshape(-1, 1)  # Reshape for RANSAC
 y = unstable_period['HT R Phase Current'].values
 
 # Fit RANSAC
 model = RANSACRegressor(LinearRegression()).fit(X, y)
 unstable_period['Current_Robust'] = model.predict(X)
+
+# Method 5: Local Regression (Loess)
+# Apply loess smoothing on the unstable period to get the local trend
+loess_smoothed = lowess(unstable_period['HT R Phase Current'], 
+                        unstable_period['Timestamp'].astype(np.int64) // 10**9, 
+                        frac=0.1)
+unstable_period['Current_Loess'] = loess_smoothed[:, 1]
 \end{lstlisting}
 
 I have used the following techniques to handle the outliers:
@@ -140,13 +144,16 @@ I have used the following techniques to handle the outliers:
 	\caption{Robust Data}
 \end{figure}
 
-% Outlies Handing comparison image
+\subsection{Conclusion}
+
+The comparison of outlier handling techniques reveals imputing using median values as the most effective method for the HT R Phase Current dataset. The method provides a smooth curve that closely follows the original data, making it suitable for handling outliers. The robust estimation technique also performs well, providing a stable curve that captures the general trend of the data. Trimming and capping methods are less effective, as they remove or cap the outliers without preserving the original data distribution. 
+
+An image showing the combined techniques is shown below:
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{./Images/outlier_handling_comparison.png}
+	\includegraphics[width=0.9\textwidth]{./Images/combined_techniques.png}
 	\caption{Outlier Handling Comparison}
 \end{figure}
-
-
 
 \clearpage

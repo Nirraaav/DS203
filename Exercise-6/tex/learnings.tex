@@ -1,0 +1,62 @@
+\section{Main Learnings}
+
+\subsection{Introduction}
+This report summarizes the learnings from three Python scripts that involve data analysis, data cleaning, and machine learning techniques. The scripts demonstrate various methodologies for exploring, processing, and visualizing data to extract meaningful insights.
+
+\subsection{Problem 1: Analyzing HT R Phase Current Data}
+The first script focuses on analyzing a dataset containing the HT R Phase Current over time. The key tasks and learnings from this analysis are as follows:
+
+\subsubsection{Exploratory Data Analysis (EDA)}
+The initial step involved loading the data and performing descriptive statistics to understand the dataset better. The `describe()` method provided an overview of the data distribution, highlighting key metrics such as mean, median, and standard deviation.
+
+\subsubsection{Visualization of Current over Time}
+Using \texttt{Plotly}, the script visualized the HT R Phase Current over time, allowing for a dynamic representation of trends and anomalies. This visualization is crucial for identifying periods of instability.
+
+\subsubsection{Identifying Unstable Periods}
+A specific two-week period (July 30, 2019, to August 14, 2019) was identified as unstable. The script plotted the current values during this period to visualize fluctuations.
+
+\subsubsection{Outlier Handling and Data Imputation}
+Various methods were applied to handle outliers and missing data:
+\begin{itemize}
+    \item \textbf{Imputation:} Replacing outliers with the mean or median values.
+    \item \textbf{Trimming:} Removing outliers based on the 10th and 90th percentiles.
+    \item \textbf{Capping:} Setting maximum and minimum thresholds for current values.
+    \item \textbf{Robust Estimation:} Using RANSAC regression to estimate current values while ignoring outliers.
+    \item \textbf{Loess Smoothing:} Applying local regression to identify trends in the data.
+\end{itemize}
+
+\subsubsection{Visualization of Processed Data}
+The script generated several plots to visualize the original and processed data, demonstrating the impact of different outlier handling methods. This included comparisons of the original data with mean and median imputed data, trimmed data, capped data, robust estimations, and Loess smoothed data.
+
+\subsection{Problem 2: Data Cleaning and Feature Selection}
+The second script focuses on data cleaning and feature selection techniques applied to a dataset with 100 columns. The key tasks and learnings from this analysis are as follows:
+
+\subsubsection{Data Loading and Initial Exploration}
+Data was loaded from a CSV file, followed by initial explorations such as checking for null values and obtaining summary statistics.
+
+\subsubsection{Handling Low Variance Columns}
+Columns with low variance (less than 0.05) were identified and removed, as they provide little useful information for predictive modeling.
+
+\subsubsection{Missing Value Imputation}
+Missing values in numeric columns were replaced with the mean of those columns, ensuring that the dataset remains usable for further analysis.
+
+\subsubsection{Outlier Detection and Removal}
+Outliers were detected using the Interquartile Range (IQR) method. Rows containing outliers were removed to improve the quality of the dataset.
+
+\subsubsection{Normalization and Standardization}
+The numeric data was standardized using \texttt{StandardScaler} from \texttt{sklearn}, allowing for the normalization of features across different scales, which is essential for machine learning algorithms.
+
+\subsubsection{Correlation Analysis}
+A correlation heatmap was generated to visualize relationships between features. Highly correlated features (with a threshold of 0.8) were identified, and one feature from each pair was dropped to reduce multicollinearity.
+
+\subsection{Conclusion}
+The scripts illustrate essential techniques in data analysis and machine learning, including exploratory data analysis, outlier handling, feature selection, and data visualization. These methodologies are crucial for preparing data for machine learning models and ensuring accurate and reliable results.
+
+\subsection{References}
+\begin{itemize}
+    \item \texttt{pandas} documentation: \url{https://pandas.pydata.org/pandas-docs/stable/}
+    \item \texttt{numpy} documentation: \url{https://numpy.org/doc/stable/}
+    \item \texttt{scikit-learn} documentation: \url{https://scikit-learn.org/stable/documentation.html}
+    \item \texttt{plotly} documentation: \url{https://plotly.com/python/}
+    \item \texttt{statsmodels} documentation: \url{https://www.statsmodels.org/stable/index.html}
+\end{itemize}
