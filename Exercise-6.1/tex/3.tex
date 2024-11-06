@@ -1,0 +1,86 @@
+\section{Report 128}
+
+\subsection*{Introduction}
+
+This report compares two data analysis and preprocessing reports, each detailing the analysis of the HT R Phase Current dataset and another dataset referred to as E6 Run. Both reports apply data cleaning techniques, outlier handling, and dimensionality reduction but differ in terms of approach, level of detail, and methodology. In this comparison, we highlight the key differences and provide an explanation for each.
+
+\subsection*{Initial Data Loading and Structure}
+
+\subsubsection*{My Report}
+The first report mentions the data loading process with a detailed description of converting the \texttt{Timestamp} column into a datetime format and indexing it for time series analysis.
+
+\subsubsection*{128 Report}
+While the second report also mentions loading and indexing the data based on \texttt{Timestamp}, it provides less technical detail compared to the first report.
+
+\subsubsection*{Explanation}
+The first report provides more granular detail on how the data was structured, which would be beneficial for reproducibility. The second report keeps it high-level and focuses on summarizing the steps.
+
+\subsection*{Descriptive Statistics}
+
+\subsubsection*{My Report}
+The first report computes a wide range of statistical measures, including the mean, median, mode, standard deviation, and quantiles.
+
+\subsubsection*{128 Report}
+The second report only provides basic statistics such as the mean, maximum, and minimum HT R Phase Current values.
+
+\subsubsection*{Explanation}
+The first report gives a more comprehensive statistical summary, making it more useful for understanding the distribution of the data. The second report provides only the essential statistics.
+
+\subsection*{Outlier Detection}
+
+\subsubsection*{My Report}
+The first report applies Z-scores to detect outliers, with a threshold set at ±3 for identifying and removing outliers.
+
+\subsubsection*{128 Report}
+The second report also mentions using Z-scores but does not specify the threshold or how exactly the outliers were identified.
+
+\subsubsection*{Explanation}
+The first report provides more details about the threshold for Z-scores, making the methodology clearer. The second report lacks the specificity needed for understanding how outliers were detected.
+
+\subsection*{Smoothing Techniques}
+
+\subsubsection*{My Report}
+The first report applies multiple outlier handling techniques such as imputation, trimming, robust regression, and Loess smoothing to deal with fluctuations.
+
+\subsubsection*{128 Report}
+In contrast, the second report only applies a Simple Moving Average (SMA) with a window size of 5.
+
+\subsubsection*{Explanation}
+The first report’s exploration of multiple outlier handling techniques makes it more thorough. The second report’s reliance on a single method (SMA) simplifies the process but may miss other effective methods for smoothing.
+
+\subsection*{Global Trend Adjustment}
+
+\subsubsection*{My Report}
+The first report details how global trend information was used to adjust the local 2-week fluctuation period.
+
+\subsubsection*{128 Report}
+The second report also mentions global trend adjustment but does not elaborate on how this adjustment was calculated.
+
+\subsubsection*{Explanation}
+The first report provides a more detailed explanation of how global trends were used to smooth local fluctuations, making it a more robust approach to handling anomalies.
+
+\subsection*{Statistical Measures After Smoothing}
+
+\subsubsection*{My Report}
+The first report computes various statistical measures post-smoothing, including mean, variance, median, and mode.
+
+\subsubsection*{128 Report}
+The second report only includes mean and variance after smoothing.
+
+\subsubsection*{Explanation}
+The first report’s inclusion of a broader set of statistics offers more insight into how the smoothing process affected the dataset.
+
+\subsection*{PCA and Dimensionality Reduction}
+
+\subsubsection*{My Report}
+The first report covers Principal Component Analysis (PCA) in detail, including steps such as standardization, correlation analysis, and multicollinearity handling via VIF. It also explains the elbow method for determining the number of components to retain.
+
+\subsubsection*{128 Report}
+The second report includes PCA but without VIF analysis or detailed discussion on multicollinearity. It also does not provide an elbow diagram for PCA interpretation.
+
+\subsubsection*{Explanation}
+The first report offers a more comprehensive approach to dimensionality reduction by integrating VIF analysis and detailed PCA interpretation. The second report is more concise, focusing on PCA without the added details on multicollinearity.
+
+\subsection*{Conclusion}
+
+In conclusion, while both reports tackle data preprocessing effectively, the first report provides a more detailed and comprehensive approach, especially in terms of outlier handling, smoothing techniques, and PCA analysis. The second report simplifies some of the processes but could benefit from additional details in specific areas such as outlier detection and dimensionality reduction.

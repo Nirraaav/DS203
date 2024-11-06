@@ -1,0 +1,107 @@
+\section{Report 139}
+
+\subsection*{Introduction}
+This report compares two analyses of datasets in the context of data exploration, cleaning, outlier handling, and dimensionality reduction. The primary document, \textit{DS203: Exercise 6}, will be compared with the alternative document, \textit{139.pdf}, to highlight methodological, analytical, and interpretative differences. This comparison is broken down by each major problem subsection* and sub-task, with additional details provided to further enhance understanding.
+
+\subsection*{Problem 1: Outlier Handling and Data Imputation}
+
+\subsubsection*{Exploratory Data Analysis (EDA)}
+
+\subsubsection*{Summary Statistics}
+\begin{itemize}
+    \item \textbf{My Report:} The analysis begins with a thorough EDA, calculating key statistics like mean, median, standard deviation, and data range. A nine-month period is covered with frequency information and outlier visualization using Plotly.
+    \item \textbf{139 Report:} Provides fewer statistical details, mentioning only a discrepancy between count and shape due to NA and null values. After cleaning, it visualizes the data with scatter, box plots, and histograms. Specific observations are made, such as a high concentration of values around 0.5 and outliers above an upper fence of 71.33k.
+\end{itemize}
+
+\subsubsection*{Key Difference}
+My report provides a more statistically rich description, while 139.pdf focuses on a specific outlier threshold. Additionally, DS203 discusses frequency (1 record every 5 minutes), which is absent in 139.pdf.
+
+\subsubsection*{Unstable Period Identification}
+\begin{itemize}
+    \item \textbf{My Report:} Identifies the unstable period from \texttt{2019-07-30} to \texttt{2019-08-14}, based on observed fluctuations and gaps.
+    \item \textbf{139 Report:} Selects a different period, \texttt{2019-07-16} to \texttt{2019-07-30}, using a 20k-minute duration. Fluctuations and zeros in this interval are highlighted as reasons.
+\end{itemize}
+
+\subsubsection*{Key Difference}
+My report provides a longer period for analysis and appears to base the selection on visual observation of instability, while 139 uses an approximate minute duration to define the period.
+
+\subsubsection*{Outlier Handling Techniques}
+
+\subsubsection*{Methods Used}
+\begin{itemize}
+    \item \textbf{My Report:} Applies five techniques: median imputation, trimming, capping, RANSAC regression, and Loess smoothing.
+    \item \textbf{139 Report:} Uses three methods: mean imputation, capping at 71.33k, and trimming values at 0 and above 71.33k.
+\end{itemize}
+
+\subsubsection*{Key Difference}
+My report implements a wider array of techniques, including advanced regression and smoothing. In contrast, 139 applies simpler imputation and capping without exploring non-parametric or robust regression techniques.
+
+\subsubsection*{Global Trend Information Usage}
+\begin{itemize}
+    \item \textbf{My Report:} Proposes a seasonal decomposition approach to capture global trends and guide corrections for local instabilities.
+    \item \textbf{139 Report:} Recommends calculating a moving average across the dataset to replace missing or volatile values in the identified period, without seasonal analysis.
+\end{itemize}
+
+\subsubsection*{Key Difference}
+My report leverages seasonal decomposition, which provides a more structured approach than a simple moving average, potentially yielding insights into cyclic trends in the dataset.
+
+\subsection*{Problem 2: Data Cleaning and Feature Selection}
+
+\subsubsection*{Handling Null and Low Variance Columns}
+\begin{itemize}
+    \item \textbf{My Report:} Columns with a variance below 0.05 are removed, non-numeric values are replaced, and missing values are imputed with column means.
+    \item \textbf{139 Report:} Drops specific columns (56, 58 for nulls; 2, 82 for low unique values). Non-numeric columns are dropped with a less systematic approach.
+\end{itemize}
+
+\subsubsection*{Key Difference}
+My report follows a threshold-based approach, providing a quantitative criterion for column removal. The 139 report uses individual column selection based on specific null and unique value observations.
+
+\subsubsection*{Outlier Detection and Removal}
+\begin{itemize}
+    \item \textbf{My Report:} Detects outliers using the Interquartile Range (IQR) method and standardizes columns before PCA.
+    \item \textbf{139 Report:} Applies a 10x IQR threshold for outlier removal, assuming minimal data context and caution in outlier removal. High-skew columns are also normalized.
+\end{itemize}
+
+\subsubsection*{Key Difference}
+My report employs a stricter, statistical-based IQR outlier detection, while 139 uses an exaggerated IQR threshold to minimize impact on data integrity, reflecting a more cautious approach.
+
+\subsubsection*{Correlation and VIF Analysis}
+\begin{itemize}
+    \item \textbf{My Report:} Drops columns with correlations above 0.8 and calculates VIF, dropping columns with VIFs over 10.
+    \item \textbf{139 Report:} Drops columns with correlations from 0.6 to 1 and removes columns with VIF exceeding 100.
+\end{itemize}
+
+\subsubsection*{Key Difference}
+My Report employs a more conservative correlation threshold (0.8), potentially retaining more features than 139, which uses a lower correlation threshold (0.6) and a very high VIF threshold (100), which may allow some multicollinearity to persist.
+
+\subsubsection*{PCA Analysis}
+\begin{itemize}
+    \item \textbf{My Report:} Conducts PCA before and after removing correlated features, determining the optimal component count using elbow plots.
+    \item \textbf{139 Report:} Uses the \texttt{kneed} library to find an elbow at 5 components without progressive PCA stages.
+\end{itemize}
+
+\subsubsection*{Key Difference}
+DS203’s iterative PCA analysis provides more insight into dimensionality, allowing a more dynamic component count adjustment, while 139 selects components based on a single elbow plot.
+
+\subsection*{Problem 3: Dimensionality Reduction with PCA and t-SNE}
+
+\subsubsection*{PCA Analysis on MNIST Dataset}
+\begin{itemize}
+    \item \textbf{My Report:} Provides an elbow diagram, cumulative variance analysis, and a scatter plot (PC2 vs. PC1) to evaluate variance retention.
+    \item \textbf{139 Report:} Selects 40 principal components based on the \texttt{kneed} library, noting that PC1 holds more information. Two PCs only capture 10\% variance, while 40 PCs capture 55\%.
+\end{itemize}
+
+\subsubsection*{Key Difference}
+DS203 emphasizes component interpretability and optimal variance capture with fewer components, whereas 139 chooses more components (40) for variance capture, potentially prioritizing information retention over dimensionality reduction.
+
+\subsubsection*{t-SNE Analysis}
+\begin{itemize}
+    \item \textbf{My Report:} Applies t-SNE to both MNIST and E6 datasets, visualizing the results with scatter plots and assessing separability.
+    \item \textbf{139 Report:} Evaluates clustering quality using K-means with t-SNE, calculating Silhouette Score and Davies-Bouldin Index, and applies t-SNE to both datasets.
+\end{itemize}
+
+\subsubsection*{Key Difference}
+The DS203 report lacks quantitative clustering metrics (Silhouette and Davies-Bouldin), which the 139 report includes to assess cluster quality. This adds an extra level of analysis to 139, particularly useful for evaluating cluster distinctiveness.
+
+\subsection*{Conclusion}
+The DS203 report generally offers a more rigorous approach to statistical analysis, particularly with outlier handling, PCA, and correlation analysis. The 139 report provides valuable clustering metrics during t-SNE and a simplified outlier handling approach, which can be beneficial in cases requiring conservative assumptions. These differences reflect two contrasting data handling and dimensionality reduction strategies, each with its own merits and potential applications.

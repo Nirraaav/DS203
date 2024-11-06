@@ -1,0 +1,88 @@
+\section*{Report 7}
+
+\subsection*{Introduction}
+This section compares the approaches taken in two distinct reports on the DS203 Assignment - E6. The reports, written by Me and Aditya Anand Gupta, focus on data analysis, handling missing values, outlier treatment, and dimensionality reduction for three main problems. Each report provides valuable insights and employs slightly different methodologies. This comparative analysis highlights differences and evaluates the efficacy of each approach.
+
+\subsection*{Problem 1: Handling Outliers, Missing, and Incorrect Data}
+
+\subsubsection*{Overview}
+Problem 1 focuses on exploring, identifying, and improving data quality by addressing missing values and outliers within the dataset.
+
+\subsubsection*{A. Exploratory Data Analysis (EDA)}
+Both authors performed an initial data inspection, but there are some key differences:
+\begin{itemize}
+    \item \textbf{My Report:} The EDA includes calculations of mean, standard deviation, and a visual line plot to detect instability. The report uses \texttt{plotly} for interactive plots, emphasizing early visualization of data patterns.
+    \item \textbf{Aditya Anand Gupta's Report:} Aditya provides detailed column statistics with a summary of missing data and identifies that the \texttt{Timestamp} column requires reformatting. The EDA also emphasizes the skewness of data, with many values close to zero.
+\end{itemize}
+
+\subsubsection*{B. Identification of Unstable Period}
+\begin{itemize}
+    \item \textbf{My Report:} Analyzes a two-week period from July 30 to August 14, 2019, with line plots to illustrate fluctuations. The period is selected based on visual inspection of wild fluctuations.
+    \item \textbf{Aditya Anand Gupta's Report:} Chooses a different period, from May 15 to May 29, 2019, identified through daily averaged plots. This choice is justified with more comprehensive fluctuation analysis.
+\end{itemize}
+
+\subsubsection*{C. Outlier Handling and Data Imputation}
+Each report applies distinct methods to handle missing values and outliers:
+\begin{itemize}
+    \item \textbf{My Report:} Implements multiple methods, including median imputation, trimming, capping, RANSAC regression, and Loess smoothing, to treat outliers and smooth data. The choice of median imputation is well-justified based on its robustness.
+    \item \textbf{Aditya Anand Gupta's Report:} Aditya uses Z-score filtering for outlier removal, Winsorization, and moving average smoothing. Imputation is performed using the mean, and Winsorization caps extreme values. Aditya’s approach emphasizes consistency and the preservation of data distribution.
+\end{itemize}
+
+\subsubsection*{D. Global Trend Analysis for Local Adjustments}
+Both reports suggest leveraging global trends:
+\begin{itemize}
+    \item \textbf{My Report:} Mentions regression-based imputation to address unstable regions.
+    \item \textbf{Aditya Anand Gupta's Report:} Expands on regression imputation, implementing a time series decomposition approach to capture trends and seasonality.
+\end{itemize}
+
+\subsection*{Problem 2: Column Processing and Dimensionality Reduction}
+
+\subsubsection*{A. Column Processing and Reduction}
+Both reports discuss criteria for retaining columns, but the methods differ:
+\begin{itemize}
+    \item \textbf{By Report:} Retains columns based on variance and correlation thresholds, selecting 86 columns.
+    \item \textbf{Aditya Anand Gupta's Report:} Employs a low variance threshold to discard irrelevant columns. Aditya’s report also identifies specific redundant columns and provides a list of columns dropped.
+\end{itemize}
+
+\subsubsection*{B. Outlier Handling, Normalization, and Standardization}
+\begin{itemize}
+    \item \textbf{My Report:} Uses the Interquartile Range (IQR) method for outliers, filling NaN values with column means and standardizing data.
+    \item \textbf{Aditya Anand Gupta's Report:} Aditya uses similar methods, noting normalization with \texttt{StandardScaler}. This subsection is concise, focusing on bringing the dataset into a compatible format for further analysis.
+\end{itemize}
+
+\subsubsection*{C. Correlation Analysis and VIF}
+\begin{itemize}
+    \item \textbf{My Report:} Applies correlation and VIF analysis, setting thresholds of 0.8 for correlation and 10 for VIF.
+    \item \textbf{Aditya Anand Gupta's Report:} Identifies 32 columns with high VIF values and provides specific column names. This subsection is more granular, reflecting detailed analysis of multicollinearity.
+\end{itemize}
+
+\subsubsection*{D. Principal Component Analysis (PCA)}
+Both authors implement PCA but use different interpretations:
+\begin{itemize}
+    \item \textbf{My Report:} Identifies an elbow point around 10 to 15 components.
+    \item \textbf{Aditya Anand Gupta's Report:} Concludes an elbow point at around 8 to 10 components post-VIF analysis, suggesting dimensionality reduction to 54 columns.
+\end{itemize}
+
+\subsection*{Problem 3: PCA and t-SNE on MNIST and E6 Datasets}
+
+\subsubsection*{A. PCA Analysis on MNIST Dataset}
+\begin{itemize}
+    \item \textbf{My Report:} Conducts PCA and provides an elbow plot, identifying 100 components as optimal.
+    \item \textbf{Aditya Anand Gupta's Report:} Aditya provides further insight into clustering behavior of different digit groups in the PCA-reduced space.
+\end{itemize}
+
+\subsubsection*{B. t-SNE Analysis on MNIST and E6 Datasets}
+Both authors use t-SNE to visualize data structure in two dimensions:
+\begin{itemize}
+    \item \textbf{My Report:} Provides a clear visualization of digit clustering but doesn’t elaborate extensively on overlapping regions.
+    \item \textbf{Aditya Anand Gupta's Report:} Adds interpretation of overlapping clusters in MNIST, suggesting similarities among certain digits.
+\end{itemize}
+
+\subsubsection*{C. t-SNE on E6 Dataset}
+\begin{itemize}
+    \item \textbf{My Report:} Offers basic observations on t-SNE clusters in E6 without extensive commentary on structure.
+    \item \textbf{Aditya Anand Gupta's Report:} Observes continuous structures and arch-like formations, indicating sequential relationships within the data.
+\end{itemize}
+
+\subsection*{Conclusion}
+In summary, both reports successfully tackle the assignment's requirements with slightly different focuses. My Report emphasizes multiple data treatment methods and interactive visualizations, whereas Aditya Anand Gupta provides a systematic, step-by-step approach with a focus on statistical rigor. Together, these reports illustrate the application of comprehensive data analysis techniques in solving real-world data challenges.
