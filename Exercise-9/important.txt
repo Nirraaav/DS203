@@ -1,0 +1,120 @@
+\section*{Task 1}
+
+\begin{task*}[1]
+
+\end{task*}
+
+\section*{Task 2}
+
+\begin{task*}[2]
+
+\end{task*}
+
+\section*{Task 3}
+
+\begin{task*}[3]
+
+\end{task*}
+
+\section*{Task 4}
+
+\begin{task*}[4]
+
+\end{task*}
+
+\section*{Task 5}
+
+\begin{task*}[5]
+
+\end{task*}
+
+\section*{Task 6}
+
+\begin{task*}[6]
+
+\end{task*}
+
+\section*{Task 7}
+
+\begin{task*}[7]
+
+\end{task*}
+
+\section*{Task 8}
+
+\begin{task*}[8]
+
+\end{task*}
+
+\section*{Task 9}
+
+\begin{task*}[9]
+
+\end{task*}
+
+\section*{Task 10}
+
+\begin{task*}[10]
+
+\end{task*}
+
+\section*{Task 11}
+
+\begin{task*}[11]
+
+\end{task*}
+
+\section*{Task 12}
+
+\begin{task*}[12]
+
+\end{task*}
+
+\section*{Task 13}
+
+\begin{task*}[13]
+
+\end{task*}
+
+\section*{Task 14}
+
+\begin{task*}[14]
+
+\end{task*}
+
+\section*{Task 15}
+
+\begin{task*}[15]
+
+\end{task*}
+
+\section*{Task 16}
+
+\begin{task*}[16]
+
+\end{task*}
+
+\section*{Task 17}
+
+\begin{task*}[17]
+
+\end{task*}
+
+\section*{Task 18}
+
+\begin{task*}[18]
+
+\end{task*}
+
+\section*{Task 19}
+
+\begin{task*}[19]
+
+\end{task*}
+
+\section*{Task 20}
+
+\begin{task*}[20]
+
+\end{task*}
+
