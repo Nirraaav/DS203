@@ -1,0 +1,44 @@
+Q1-Mean - 23.86872
+Q1-LowerCIBoundary - 23.804728197025455 
+Q1-UpperCIBoundary - 23.932711802974545 
+
+------------------------------------------------------------
+
+Q2-beta_0 - -0.3668852378898464
+Q2-beta_1 - 0.9876815296075512
+Q2-PredictedPrice - 21.609028795878167
+Q2-CalculatedAnswer - 0.9876815296075512
+
+------------------------------------------------------------
+
+Q3-VIF_OPEN - 6054.186052
+Q3-VIF_HIGH - 9479.768142
+Q3-VIF_LOW - 8029.882751
+Q3-VIF_CLOSE - 8739.960973
+Q3-VIF_TOTTRDQTY - 27.832106
+Q3-VIF_TOTTRDVAL - 28.777058
+Q3-VIF_Analysis_Conclusions_NextSteps - The VIF values for the features OPEN, HIGH, LOW, and CLOSE are extremely high (ranging from 6054 to 8615), indicating severe multicollinearity between these variables. High VIF values suggest that these features are highly correlated with one another, making it difficult to isolate the individual effects of each feature on the target variable, leading to potential instability and unreliable coefficient estimates in a regression model.
+To address this issue, the next step is to progressively remove the features with the highest VIF, starting with CLOSE, and then reassess the VIF of the remaining features. This process should continue until the VIF values are reduced to an acceptable level.
+Q3-VIF_Feature_To_Drop - OPEN 
+Q3-VIF_Feature_1_Remaining - HIGH
+Q3-VIF_Feature_2_Remaining - LOW
+Q3_Optional_Description - 
+This is completely optional - space provided to explain an point that you may want to (NO MARKS)
+For VIF_TOTTRDQTY and VIF_TOTTRDVAL, if we run the VIF analysis on all 6 features, we get the values as 27.832106 and 28.777058 respectively, but since it is not supposed to be considered while constructing the model, I'm writing it as NA. If it has to be considered, please use the values here.
+
+Also very surprisingly in the 2nd iteration, we end up dropping the OPEN column!
+
+------------------------------------------------------------
+
+Q4a_Symbol_1 - ASHCO
+Q4a_Value_1 - 0.0474341649025257
+Q4a_Symbol_2 - ANTGRAPHIC
+Q4a_Value_2 - 0.08867592036759682
+Q4b_Symbol_Closest_Stock - DCM
+Q4b_Count - 1013
+Q4_Optional_Description -
+This is completely optional - space provided to explain an point that you may want to (NO MARKS)
+In Q4b (first part where we calculate the stddev of the alloted stock (SOUTHBANK)), I have assumed that we choose only the entries with symbol EQ (this was mentioned in the 2nd step and not there in the 1st step, so I was confused about it). If we take all stocks, ie, not add the filter for symbol EQ, we get the value of the stdev of the alloted stock (SOUTHBANK) as 25.358977154536202, and if we add the filter, we get the value of stddev as 25.450003476301827. 
+
+Correspondingly the closest stock changes.. if we use the symbol EQ, we get the closest one as DCM, but if we dont use EQ, we get the closest one as FLEXITUFF. I have mentioned all of this in my file Q4.ipynb, and did calculations using both spark and without using spark (using pandas only). Please check it once. Thanks!
+
